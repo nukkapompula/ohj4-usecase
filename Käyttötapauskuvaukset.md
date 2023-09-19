@@ -1,5 +1,5 @@
 # Äänestyssovelluksen käyttötapauskuvaukset
-Tapaukset alla kuvaavat sovelluksen toimintaa erilaisissa käyttötapauksissa pääosin kronologisessa järjestyksessä.
+Alla luetellut toiminnot kuvaavat sovelluksen erilaisia käyttötapauksia pääosin kronologisessa järjestyksessä.
 
 ## Luo profiili
 Äänestyssovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellaisen luomisprosessi laukaistaan tällä painikkeella. Käyttäjä valitsee ensin roolikseen joko "Ylläpitäjän" tai "Äänestäjän". Sitten hän kirjoittaa haluamansa käyttäjänimen sekä salasanan. Käyttäjälle annetaan virheilmoitus, mikäli annetut tiedot eivät täytä seuraavia ehtoja:
@@ -16,7 +16,7 @@ Esiehtona sisäänkirjautumiseen on olemassaoleva käyttäjäprofiili. Tällä p
 - syötettyä käyttäjänimeä ei ole olemassa tai se on tyhjä merkkijono
 - salasana on väärä tai se on tyhjä merkkijono.
 
-Onnistunut kirjautuminen määrää käyttäjän mahdolliset toiminnot sovelluksessa hänen profiililleen valitsemansa roolin (Ylläpitäjä/Äänestäjä) mukaan.
+Onnistunut kirjautuminen määrää käyttäjän mahdolliset toiminnot sovelluksessa hänen profiililleen valitsemansa roolin (Ylläpitäjä/Äänestäjä) mukaan. Niiden lisäksi molemmat käyttäjätyypit voivat myös toki kirjautua ulos ollessaan profiilinsa etusivulla.
 
 ## Luo äänestys
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen, kirjoittaa vapaaehtoisen kuvauksen sekä lisää vaihtoehdot (oletuksena 2 kpl) äänestäjille. Äänestys avataan jos...
@@ -28,3 +28,9 @@ Muutoin käyttäjä vastaanottaa virheilmoituksen.
 
 ## Poista äänestys
 Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläpitäjänä. Lisäksi käyttäjän on täytynyt luoda vähintään yksi äänestys ennen kuin "Poista äänestys"-painike tulee näkyviin. Käyttäjä kykenee poistamaan vain itse avaamiaan äänestyksiä.
+
+## Selaa äänestyksiä
+Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Äänestäjä"-roolisella käyttäjällä. Käyttäjä näkee täällä kaikki ylläpitäjien avaamat aktiiviset äänestykset. Halutessaan hän voi valita äänestyksen, jolloin siirrytään käyttötapaukseen "Valitse äänestys".
+
+## Valitse äänestys
+Tänne päädytään vain tapauksen "Selaa äänestyksiä" jälkeen, halutun äänestyksen valikoiduttua. Käyttäjä näkee valitun äänestyksen tilanteen (kuinka paljon kukin vaihtoehto on kerännyt ääniä) ja äänestyksen avaajan.
