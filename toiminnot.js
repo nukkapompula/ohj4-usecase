@@ -1,1 +1,1 @@
-console.log("toimii!");
+document.getElementById("profiilinLuominen").style.display = "none";
