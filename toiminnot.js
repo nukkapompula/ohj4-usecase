@@ -1,12 +1,17 @@
 function kirjauduSisaan(){
     let nimi = document.getElementById("kayttajaNimi").value;
     let sana = document.getElementById("salasana").value;
-    if(nimi.length == 0 || nimi.includes(" ")){
+    let tallennettuNimi = sessionStorage.getItem(nimi);
+    let tallennettuSana = sessionStorage.getItem(`${nimi}#sana`);
+    if(nimi.length == 0){
         window.alert("Syötä ruutuun käyttäjänimesi.");
         document.getElementById("kayttajaNimi").value = "";
     } else if(sana.length == 0){
-        window.alert("Salasana on väärä!")
+        window.alert("Syötä ruutuun salasanasi.")
         document.getElementById("salasana").value = "";
+    } else if(tallennettuNimi != nimi){
+        window.alert("Käyttäjää ei löydy!");
+        document.getElementById("kayttajaNimi").value = "";
     }
 }
 
