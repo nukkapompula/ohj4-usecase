@@ -28,13 +28,19 @@
             Päätä tilisi rooli. Jos tahdot luoda äänestyksiä muille, valitse "Ylläpitäjä". Jos haluat 
             ottaa kantaa asioihin, valitse "Äänestäjä".
         </p>
-        <select id="">
-            <option value="">Ylläpitäjä</option>
-            <option value="">Äänestäjä</option>
+        <select id="rooli">
+            <option value="admin">Ylläpitäjä</option>
+            <option value="voter">Äänestäjä</option>
         </select>
         <p>Käyttäjänimesi: <input type="text" id="uusiKayttajaNimi"></p>
         <p>Salasanasi: <input type="password" id="uusiSalasana"></p>
         <button onclick="vahvista()">Vahvista</button>
+        <button onclick="peruuta()">Peruuta</button>
+    </section>
+
+    <section id="kayttajaVahvistettu" style="display: none;">
+        <p id="vahvistusTeksti"></p>
+        <button onclick="peruuta()">Palaa alkuvalikkoon</button>
     </section>
 
     <script src="toiminnot.js"></script>
