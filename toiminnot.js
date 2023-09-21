@@ -10,3 +10,12 @@ function kirjauduSisaan(){
         document.getElementById("salasana").value = "";
     }
 }
+
+function luoKayttaja(){
+    document.getElementById("kayttajanLuominen").style.display = "block";
+    document.getElementById("etusivu").style.display = "none";
+}
+
+function vahvista(){
+    console.log("joo-o");
+}

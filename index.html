@@ -23,8 +23,18 @@
         <button onclick="luoKayttaja()">Luo käyttäjä</button>
     </section>
 
-    <section id="profiilinLuominen" style="display: none;">
-        <p>testi</p>
+    <section id="kayttajanLuominen" style="display: none;">
+        <p>
+            Päätä tilisi rooli. Jos tahdot luoda äänestyksiä muille, valitse "Ylläpitäjä". Jos haluat 
+            ottaa kantaa asioihin, valitse "Äänestäjä".
+        </p>
+        <select id="">
+            <option value="">Ylläpitäjä</option>
+            <option value="">Äänestäjä</option>
+        </select>
+        <p>Käyttäjänimesi: <input type="text" id="uusiKayttajaNimi"></p>
+        <p>Salasanasi: <input type="password" id="uusiSalasana"></p>
+        <button onclick="vahvista()">Vahvista</button>
     </section>
 
     <script src="toiminnot.js"></script>
