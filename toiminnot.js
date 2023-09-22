@@ -1,17 +1,24 @@
+var kirjautunut = null;
+
 function kirjauduSisaan(){
     let nimi = document.getElementById("kayttajaNimi").value;
     let sana = document.getElementById("salasana").value;
     let tallennettuNimi = sessionStorage.getItem(nimi);
     let tallennettuSana = sessionStorage.getItem(`${nimi}#sana`);
-    if(nimi.length == 0){
-        window.alert("Syötä ruutuun käyttäjänimesi.");
-        document.getElementById("kayttajaNimi").value = "";
-    } else if(sana.length == 0){
-        window.alert("Syötä ruutuun salasanasi.")
-        document.getElementById("salasana").value = "";
-    } else if(tallennettuNimi != nimi){
+    if(tallennettuNimi != nimi){
         window.alert("Käyttäjää ei löydy!");
         document.getElementById("kayttajaNimi").value = "";
+    } else if(tallennettuSana != sana){
+        window.alert("Väärä salasana!");
+        document.getElementById("salasana").value = "";
+    } else if(sessionStorage.getItem(`${nimi}#rooli`) == "aanestaja"){
+        kirjautunut = nimi;
+        document.getElementById("aanestajanEtusivu").style.display = "block";
+        document.getElementById("etusivu").style.display = "none";
+    } else {
+        kirjautunut = nimi;
+        document.getElementById("yllapitajanEtusivu").style.display = "block";
+        document.getElementById("etusivu").style.display = "none";
     }
 }
 
@@ -32,9 +39,9 @@ function vahvista(){
         document.getElementById("uusiSalasana").value = "";
     } else {
         // muuta "session" "localiksi" lopuksi
-        window.sessionStorage.setItem(nimi + "#rooli", rooli);
-        window.sessionStorage.setItem(nimi, nimi);
-        window.sessionStorage.setItem(nimi + "#sana", sana);
+        sessionStorage.setItem(nimi + "#rooli", rooli);
+        sessionStorage.setItem(nimi, nimi);
+        sessionStorage.setItem(nimi + "#sana", sana);
         document.getElementById("kayttajaVahvistettu").style.display = "block";
         document.getElementById("kayttajanLuominen").style.display = "none";
         document.getElementById("vahvistusTeksti").innerHTML = `Käyttäjä ${nimi} luotu!`;
@@ -47,4 +54,8 @@ function peruuta(){
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("kayttajanLuominen").style.display = "none";
     document.getElementById("kayttajaVahvistettu").style.display = "none";
+}
+
+function testiTyhjennys(){
+    sessionStorage.clear();
 }
