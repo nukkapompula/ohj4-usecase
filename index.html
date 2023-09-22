@@ -11,7 +11,6 @@
     <header class="p-3">
         <h1>Äänestyssovellus</h1>
         <p id="info"></p>
-        <button onclick="testiTyhjennys()">TESTI; TYHJENNÄ VARASTO</button>
     </header>
 
     <section id="etusivu" class="p-3">
@@ -40,11 +39,6 @@
         <button onclick="peruuta()">Peruuta</button>
     </section>
 
-    <section id="kayttajaVahvistettu" style="display: none;">
-        <p id="vahvistusTeksti"></p>
-        <button onclick="peruuta()">Palaa alkuvalikkoon</button>
-    </section>
-
     <section id="aanestajanEtusivu" style="display: none;">
         <p></p>
         <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
@@ -54,6 +48,10 @@
         <p></p>
         <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
     </section>
+
+    <footer>
+        <button onclick="testiTyhjennys()">TESTI; TYHJENNÄ VARASTO</button>
+    </footer>
 
     <script src="toiminnot.js"></script>
 </body>
