@@ -13,12 +13,18 @@ function kirjauduSisaan(){
         document.getElementById("salasana").value = "";
     } else if(sessionStorage.getItem(`${nimi}#rooli`) == "aanestaja"){
         kirjautunut = nimi;
+        document.getElementById("kayttajaNimi").value = "";
+        document.getElementById("salasana").value = "";
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("etusivu").style.display = "none";
+        document.getElementById("info").innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
     } else {
         kirjautunut = nimi;
+        document.getElementById("kayttajaNimi").value = "";
+        document.getElementById("salasana").value = "";
         document.getElementById("yllapitajanEtusivu").style.display = "block";
         document.getElementById("etusivu").style.display = "none";
+        document.getElementById("info").innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
     }
 }
 
@@ -58,4 +64,12 @@ function peruuta(){
 
 function testiTyhjennys(){
     sessionStorage.clear();
+}
+
+function kirjauduUlos(){
+    document.getElementById("info").innerHTML = `${kirjautunut} kirjattu ulos, näkemiin!`;
+    kirjautunut = null;
+    document.getElementById("etusivu").style.display = "block";
+    document.getElementById("aanestajanEtusivu").style.display = "none";
+    document.getElementById("yllapitajanEtusivu").style.display = "none";
 }

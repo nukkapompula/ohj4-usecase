@@ -10,6 +10,7 @@
 
     <header class="p-3">
         <h1>Äänestyssovellus</h1>
+        <p id="info"></p>
         <button onclick="testiTyhjennys()">TESTI; TYHJENNÄ VARASTO</button>
     </header>
 
@@ -45,11 +46,13 @@
     </section>
 
     <section id="aanestajanEtusivu" style="display: none;">
-        <p>Olet äänestäjä</p>
+        <p></p>
+        <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
     </section>
 
     <section id="yllapitajanEtusivu" style="display: none;">
-        <p>Olet ylläpitäjä</p>
+        <p></p>
+        <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
     </section>
 
     <script src="toiminnot.js"></script>
