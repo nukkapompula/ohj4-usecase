@@ -35,7 +35,7 @@ function luoKayttaja(){
     document.getElementById("info").innerHTML = "";
 }
 
-function vahvista(){
+function vahvistaKayttaja(){
     let rooli = document.getElementById("rooli").value;
     let nimi = document.getElementById("uusiKayttajaNimi").value;
     let sana = document.getElementById("uusiSalasana").value;
@@ -60,7 +60,7 @@ function vahvista(){
     }
 }
 
-function peruuta(){
+function peruutaAlkuun(){
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("kayttajanLuominen").style.display = "none";
 }
@@ -75,4 +75,29 @@ function kirjauduUlos(){
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("aanestajanEtusivu").style.display = "none";
     document.getElementById("yllapitajanEtusivu").style.display = "none";
+}
+
+function luoAanestys(){
+    document.getElementById("aanestyksenLuominen").style.display = "block";
+    document.getElementById("yllapitajanEtusivu").style.display = "none";
+}
+
+function peruutaEtusivulle(){
+    if(localStorage.getItem(`${kirjautunut}#rooli`) == "yllapitaja"){
+        document.getElementById("yllapitajanEtusivu").style.display = "block";
+        document.getElementById("aanestyksenLuominen").style.display = "none";
+        document.getElementById("uusiAanestysNimi").value = "";
+    }
+}
+
+function vahvistaAanestys(){
+    let nimi = document.getElementById("uusiAanestysNimi").value;
+    let ehdokas1 = document.getElementById("uusiEhdokas1").value;
+    let ehdokas2 = document.getElementById("uusiEhdokas2").value;
+    localStorage.setItem(nimi, kirjautunut);
+    localStorage.setItem(`${nimi}#${ehdokas1}`, "0");
+    localStorage.setItem(`${nimi}#${ehdokas2}`, "0");
+    console.log(localStorage.getItem(nimi));
+    console.log(localStorage.getItem(`${nimi}#${ehdokas1}`));
+    console.log(localStorage.getItem(`${nimi}#${ehdokas2}`));
 }

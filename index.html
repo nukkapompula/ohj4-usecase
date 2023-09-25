@@ -35,8 +35,8 @@
         </select>
         <p>Käyttäjänimesi: <input type="text" id="uusiKayttajaNimi"></p>
         <p>Salasanasi: <input type="password" id="uusiSalasana"></p>
-        <button onclick="vahvista()">Vahvista</button>
-        <button onclick="peruuta()">Peruuta</button>
+        <button onclick="vahvistaKayttaja()">Vahvista</button>
+        <button onclick="peruutaAlkuun()">Peruuta</button>
     </section>
 
     <section id="aanestajanEtusivu" style="display: none;">
@@ -45,8 +45,20 @@
     </section>
 
     <section id="yllapitajanEtusivu" style="display: none;">
-        <p></p>
+        <p>
+            Täällä voit avata joko-tai-tyyppisiä äänestyksiä muille. Pystyt myös poistamaan 
+            aiemmin järjestämiäsi äänestyksiä.
+        </p>
+        <button onclick="luoAanestys()">Luo äänestys</button>
         <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
+    </section>
+
+    <section id="aanestyksenLuominen" style="display: none;">
+        <p>Nimeä äänestyksesi: <input type="text" id="uusiAanestysNimi" placeholder="esim. Ensin oli..."></p>
+        <p>Ehdokkaan 1 nimi: <input type="text" id="uusiEhdokas1" placeholder="Muna"></p>
+        <p>Ehdokkaan 2 nimi: <input type="text" id="uusiEhdokas2" placeholder="Kana"></p>
+        <button onclick="vahvistaAanestys()">Vahvista</button>
+        <button onclick="peruutaEtusivulle()">Peruuta</button>
     </section>
 
     <footer>

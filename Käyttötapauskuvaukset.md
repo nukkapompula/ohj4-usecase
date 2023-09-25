@@ -22,7 +22,7 @@ Onnistunut kirjautuminen määrää käyttäjän mahdolliset toiminnot sovelluks
 Tämä vaatii onnistuneen sisäänkirjautumisen käyttäjäprofiililla. Kun käyttäjä kirjautuu ulos, hän pääsee sovelluksen alkuruutuun jossa pystyy joko luomaan profiilin tai kirjautumaan sisään.
 
 ## Luo äänestys
-Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen, kirjoittaa vapaaehtoisen kuvauksen sekä lisää vaihtoehdot (oletuksena 2 kpl) äänestäjille. Äänestys avataan jos...
+Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen sekä päättää vaihtoehdot äänestäjille; äänestykset ovat joko-tai-tyyppisiä. Äänestys avataan jos...
 
 - äänestyksen nimi ei ole tyhjä merkkijono
 - äänestyksen nimi on vapaa.
