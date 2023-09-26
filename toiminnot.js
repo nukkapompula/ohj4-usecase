@@ -1,5 +1,9 @@
 var kirjautunut = null;
 var inforuutu = document.getElementById("info");
+// testiylläpitäjä
+localStorage.setItem("a", "a");
+localStorage.setItem("a" + ";rooli", "yllapitaja");
+localStorage.setItem("a" + ";sana", "a");
 
 function kirjauduSisaan(){
     inforuutu.innerHTML = "";
@@ -103,6 +107,9 @@ function vahvistaAanestys(){
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
     if(aihe.length == 0 || aihe.includes(";")){
         inforuutu.innerHTML = "Nimi ei voi olla tyhjä tai sisältää puolipisteitä.";
+        document.getElementById("uusiAanestysNimi").value = "";
+    } else if(`${kirjautunut};${aihe}` in localStorage){
+        inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(ehdokas1.length == 0 || ehdokas1.includes(";")){
         inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä.";
