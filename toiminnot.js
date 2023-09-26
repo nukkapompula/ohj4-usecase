@@ -135,3 +135,7 @@ function vahvistaAanestys(){
         document.getElementById("uusiEhdokas2").value = "";
     }
 }
+
+function paivitaAanestykset(){
+    
+}
