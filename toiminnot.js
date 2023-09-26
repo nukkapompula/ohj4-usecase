@@ -140,7 +140,8 @@ function vahvistaAanestys(){
 
 function paivitaAanestykset(){
     for(n=0; n<localStorage.length; n++){
-        if(localStorage.key(n).indexOf(kirjautunut) == 0){
+        if(localStorage.key(n).indexOf(kirjautunut) == 0 && localStorage.key(n).includes("&") == false 
+        && localStorage.key(n).includes("*") == false && localStorage.key(n).includes(";") == true){
             console.log(localStorage.key(n));
         }
     }
