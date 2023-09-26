@@ -1,29 +1,31 @@
 var kirjautunut = null;
 var inforuutu = document.getElementById("info");
 
+// käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
+
 // testiylläpitäjä
 localStorage.setItem("a", "a");
-localStorage.setItem("a" + ";rooli", "yllapitaja");
-localStorage.setItem("a" + ";sana", "a");
+localStorage.setItem("a" + ";&", "yllapitaja");
+localStorage.setItem("a" + ";*", "a");
 
 // testiäänestäjä
 localStorage.setItem("b", "b");
-localStorage.setItem("b" + ";rooli", "aanestaja");
-localStorage.setItem("b" + ";sana", "b");
+localStorage.setItem("b" + ";&", "aanestaja");
+localStorage.setItem("b" + ";*", "b");
 
 function kirjauduSisaan(){
     inforuutu.innerHTML = "";
     let nimi = document.getElementById("kayttajaNimi").value;
     let sana = document.getElementById("salasana").value;
     let tallennettuNimi = localStorage.getItem(nimi);
-    let tallennettuSana = localStorage.getItem(`${nimi};sana`);
+    let tallennettuSana = localStorage.getItem(`${nimi};*`);
     if(tallennettuNimi != nimi){
         inforuutu.innerHTML = "Käyttäjää ei löydy!";
         document.getElementById("kayttajaNimi").value = "";
     } else if(tallennettuSana != sana){
         inforuutu.innerHTML = "Väärä salasana!";
         document.getElementById("salasana").value = "";
-    } else if(localStorage.getItem(`${nimi};rooli`) == "aanestaja"){
+    } else if(localStorage.getItem(`${nimi};&`) == "aanestaja"){
         kirjautunut = nimi;
         document.getElementById("kayttajaNimi").value = "";
         document.getElementById("salasana").value = "";
@@ -50,8 +52,8 @@ function vahvistaKayttaja(){
     let rooli = document.getElementById("rooli").value;
     let nimi = document.getElementById("uusiKayttajaNimi").value;
     let sana = document.getElementById("uusiSalasana").value;
-    if(nimi.length == 0 || nimi.includes(" ") || nimi.includes(";")){
-        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä tai puolipistettä.";
+    if(nimi.length == 0 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*")){
+        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä, puolipistettä, &- tai *-merkkejä.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(localStorage.getItem(nimi) == nimi){
         inforuutu.innerHTML = "Käyttäjänimi ei ole vapaa."
@@ -61,8 +63,8 @@ function vahvistaKayttaja(){
         document.getElementById("uusiSalasana").value = "";
     } else {
         localStorage.setItem(nimi, nimi);
-        localStorage.setItem(nimi + ";rooli", rooli);
-        localStorage.setItem(nimi + ";sana", sana);
+        localStorage.setItem(nimi + ";&", rooli);
+        localStorage.setItem(nimi + ";*", sana);
         document.getElementById("etusivu").style.display = "block";
         document.getElementById("kayttajanLuominen").style.display = "none";
         inforuutu.innerHTML = `Käyttäjä ${nimi} luotu!`;
@@ -100,7 +102,7 @@ function luoAanestys(){
 }
 
 function peruutaEtusivulle(){
-    if(localStorage.getItem(`${kirjautunut};rooli`) == "yllapitaja"){
+    if(localStorage.getItem(`${kirjautunut};&`) == "yllapitaja"){
         document.getElementById("yllapitajanEtusivu").style.display = "block";
         document.getElementById("aanestyksenLuominen").style.display = "none";
         document.getElementById("uusiAanestysNimi").value = "";
@@ -113,8 +115,8 @@ function vahvistaAanestys(){
     let aihe = document.getElementById("uusiAanestysNimi").value;
     let ehdokas1 = document.getElementById("uusiEhdokas1").value;
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
-    if(aihe.length == 0 || aihe.includes(";")){
-        inforuutu.innerHTML = "Nimi ei voi olla tyhjä tai sisältää puolipisteitä.";
+    if(aihe.length == 0 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*")){
+        inforuutu.innerHTML = "Nimi ei saa sisältää puolipisteitä, &- ja *-merkkejä tai olla tyhjä.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(`${kirjautunut};${aihe}` in localStorage){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
@@ -137,5 +139,9 @@ function vahvistaAanestys(){
 }
 
 function paivitaAanestykset(){
-    
+    for(n=0; n<localStorage.length; n++){
+        if(localStorage.key(n).indexOf(kirjautunut) == 0){
+            console.log(localStorage.key(n));
+        }
+    }
 }
