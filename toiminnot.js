@@ -1,9 +1,15 @@
 var kirjautunut = null;
 var inforuutu = document.getElementById("info");
+
 // testiylläpitäjä
 localStorage.setItem("a", "a");
 localStorage.setItem("a" + ";rooli", "yllapitaja");
 localStorage.setItem("a" + ";sana", "a");
+
+// testiäänestäjä
+localStorage.setItem("b", "b");
+localStorage.setItem("b" + ";rooli", "aanestaja");
+localStorage.setItem("b" + ";sana", "b");
 
 function kirjauduSisaan(){
     inforuutu.innerHTML = "";
@@ -98,6 +104,8 @@ function peruutaEtusivulle(){
         document.getElementById("yllapitajanEtusivu").style.display = "block";
         document.getElementById("aanestyksenLuominen").style.display = "none";
         document.getElementById("uusiAanestysNimi").value = "";
+        document.getElementById("uusiEhdokas1").value = "";
+        document.getElementById("uusiEhdokas2").value = "";
     }
 }
 
@@ -119,5 +127,11 @@ function vahvistaAanestys(){
         document.getElementById("uusiEhdokas2").value = "";
     } else {
         localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
+        document.getElementById("aanestyksenLuominen").style.display = "none";
+        document.getElementById("yllapitajanEtusivu").style.display = "block";
+        inforuutu.innerHTML = `Äänestys aiheesta "${aihe}" luotu!`;
+        document.getElementById("uusiAanestysNimi").value = "";
+        document.getElementById("uusiEhdokas1").value = "";
+        document.getElementById("uusiEhdokas2").value = "";
     }
 }
