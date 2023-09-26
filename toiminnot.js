@@ -39,14 +39,14 @@ function vahvistaKayttaja(){
     let rooli = document.getElementById("rooli").value;
     let nimi = document.getElementById("uusiKayttajaNimi").value;
     let sana = document.getElementById("uusiSalasana").value;
-    if(nimi.length == 0 || nimi.includes(" ")){
-        document.getElementById("info").innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntejä.";
+    if(nimi.length == 0 || nimi.includes(" ") || nimi.includes("#")){
+        document.getElementById("info").innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä tai risuaitaa.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(localStorage.getItem(nimi) == nimi){
         document.getElementById("info").innerHTML = "Käyttäjänimi ei ole vapaa."
         document.getElementById("uusiKayttajaNimi").value = "";
-    } else if(sana.length < 5){
-        document.getElementById("info").innerHTML = "Salasanassa tulee olla vähintään 5 merkkiä."
+    } else if(sana.length < 5 || sana.includes("#")){
+        document.getElementById("info").innerHTML = "Salasanassa tulee olla vähintään 5 merkkiä eikä se saa sisältää risuaitoja."
         document.getElementById("uusiSalasana").value = "";
     } else {
         localStorage.setItem(nimi + "#rooli", rooli);
@@ -91,13 +91,12 @@ function peruutaEtusivulle(){
 }
 
 function vahvistaAanestys(){
-    let nimi = document.getElementById("uusiAanestysNimi").value;
+    let aihe = document.getElementById("uusiAanestysNimi").value;
     let ehdokas1 = document.getElementById("uusiEhdokas1").value;
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
-    localStorage.setItem(nimi, kirjautunut);
-    localStorage.setItem(`${nimi}#${ehdokas1}`, "0");
-    localStorage.setItem(`${nimi}#${ehdokas2}`, "0");
-    console.log(localStorage.getItem(nimi));
-    console.log(localStorage.getItem(`${nimi}#${ehdokas1}`));
-    console.log(localStorage.getItem(`${nimi}#${ehdokas2}`));
+    localStorage.setItem(`${kirjautunut}#${aihe}`, `${ehdokas1}#0#${ehdokas2}#0`);
+    console.log(localStorage.getItem(`${kirjautunut}#${aihe}`));
+    for(i=0; i<localStorage.length; i++){
+        console.log(localStorage.key(i));
+    }
 }
