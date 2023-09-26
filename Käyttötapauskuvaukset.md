@@ -25,9 +25,9 @@ Tämä vaatii onnistuneen sisäänkirjautumisen käyttäjäprofiililla. Kun käy
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen sekä päättää vaihtoehdot äänestäjille; äänestykset ovat joko-tai-tyyppisiä. Äänestys avataan jos...
 
 - äänestyksen nimi ei ole tyhjä merkkijono tai sisällä puolipisteitä
-- äänestyksen nimi on vapaa.
+- äänestyksen nimi on vapaa (käyttäjällä itsellään ei ole olemassa samannimistä äänestystä).
 
-Muutoin käyttäjä vastaanottaa virheilmoituksen.
+Tietojen puutteista ilmoitetaan käyttäjälle.
 
 ## Poista äänestys
 Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläpitäjänä. Lisäksi käyttäjän on täytynyt luoda vähintään yksi äänestys ennen kuin "Poista äänestys"-painike tulee näkyviin. Käyttäjä kykenee poistamaan vain itse avaamiaan äänestyksiä.

@@ -104,6 +104,13 @@ function vahvistaAanestys(){
     if(aihe.length == 0 || aihe.includes(";")){
         inforuutu.innerHTML = "Nimi ei voi olla tyhjä tai sisältää puolipisteitä.";
         document.getElementById("uusiAanestysNimi").value = "";
+    } else if(ehdokas1.length == 0 || ehdokas1.includes(";")){
+        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä.";
+        document.getElementById("uusiEhdokas1").value = "";
+    } else if(ehdokas2.length == 0 || ehdokas2.includes(";")){
+        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä.";
+        document.getElementById("uusiEhdokas2").value = "";
+    } else {
+        localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
     }
-    localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
 }
