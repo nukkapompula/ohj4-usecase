@@ -5,7 +5,8 @@ Alla luetellut toiminnot kuvaavat sovelluksen erilaisia käyttötapauksia pääo
 Äänestyssovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellaisen luomisprosessi laukaistaan tällä painikkeella. Käyttäjä valitsee ensin roolikseen joko "Ylläpitäjän" tai "Äänestäjän". Sitten hän kirjoittaa haluamansa käyttäjänimen sekä salasanan. Käyttäjälle annetaan virheilmoitus, mikäli annetut tiedot eivät täytä seuraavia ehtoja:
 
 - käyttäjänimi on vapaa
-- käyttäjänimi ei ole tyhjä merkkijono, sisällä välilyöntejä, puolipisteitä tai merkkejä & ja *
+- käyttäjänimi ei sisällä välilyöntejä, puolipisteitä tai merkkejä & ja *
+- nimi ei ole tyhjä mutta alittaa 20 merkkiä
 - salasanan pituus on vähintään 5 merkkiä eikä sisällä puolipisteitä.
 
 Kun edellä mainitut seikat ovat kunnossa, luodaan tietojen mukainen käyttäjäprofiili.
@@ -25,8 +26,9 @@ Tämä vaatii onnistuneen sisäänkirjautumisen käyttäjäprofiililla. Kun käy
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen sekä päättää vaihtoehdot äänestäjille; äänestykset ovat joko-tai-tyyppisiä. Äänestys avataan jos...
 
 - äänestyksen nimi ei ole tyhjä merkkijono, sisällä puolipisteitä tai merkkejä &, *, |
-- äänestyksen nimi ei ylitä 25 merkkiä
+- äänestyksen nimi ei ylitä 30 merkkiä
 - äänestyksen nimi on vapaa (käyttäjällä itsellään ei ole olemassa samannimistä äänestystä).
+- asetetut ehdokkaat eivät ole tyhjiä merkkijonoja tai sisällä puolipisteitä
 
 Tietojen puutteista ilmoitetaan käyttäjälle.
 

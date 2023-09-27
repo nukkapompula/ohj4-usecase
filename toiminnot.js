@@ -61,8 +61,8 @@ function vahvistaKayttaja(){
     let rooli = document.getElementById("rooli").value;
     let nimi = document.getElementById("uusiKayttajaNimi").value;
     let sana = document.getElementById("uusiSalasana").value;
-    if(nimi.length == 0 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*")){
-        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä, puolipistettä, &- tai *-merkkejä.";
+    if(nimi.length == 0 || nimi.length > 20 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*")){
+        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä, puolipistettä, &- tai *-merkkejä. Nimen maksimipituus on 20 merkkiä.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(localStorage.getItem(nimi) == nimi){
         inforuutu.innerHTML = "Käyttäjänimi ei ole vapaa."
@@ -126,8 +126,8 @@ function vahvistaAanestys(){
     let aihe = document.getElementById("uusiAanestysNimi").value;
     let ehdokas1 = document.getElementById("uusiEhdokas1").value;
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
-    if(aihe.length == 0 || aihe.length > 25 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*") || aihe.includes("|")){
-        inforuutu.innerHTML = "Nimen minimipituus on 1 merkki, maksimipituus 25 merkkiä eikä se saa sisältää puolipisteitä, &-, *- tai |-merkkejä.";
+    if(aihe.length == 0 || aihe.length > 30 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*") || aihe.includes("|")){
+        inforuutu.innerHTML = "Nimen maksimipituus on 30 merkkiä eikä se saa sisältää puolipisteitä, &-, *- tai |-merkkejä.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(`${kirjautunut};${aihe}` in localStorage){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
@@ -152,7 +152,7 @@ function vahvistaAanestys(){
 
 function haeAanestykset(){
     // alustetaan lista
-    let kirjasto = document.querySelector("ul");
+    let kirjasto = document.getElementById("yllapitajanAanestykset");
     while(kirjasto.firstChild){
         kirjasto.removeChild(kirjasto.lastChild);
     }
