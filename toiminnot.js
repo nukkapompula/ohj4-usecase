@@ -76,6 +76,8 @@ function vahvistaKayttaja(){
 function peruutaAlkuun(){
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("kayttajanLuominen").style.display = "none";
+    document.getElementById("uusiKayttajaNimi").value = "";
+    document.getElementById("uusiSalasana").value = "";
 }
 
 function testiTyhjennys(){
@@ -115,8 +117,8 @@ function vahvistaAanestys(){
     let aihe = document.getElementById("uusiAanestysNimi").value;
     let ehdokas1 = document.getElementById("uusiEhdokas1").value;
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
-    if(aihe.length == 0 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*")){
-        inforuutu.innerHTML = "Nimi ei saa sisältää puolipisteitä, &- ja *-merkkejä tai olla tyhjä.";
+    if(aihe.length == 0 || aihe.length > 25 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*")){
+        inforuutu.innerHTML = "Nimen minimipituus on 1 merkki, maksimipituus 25 merkkiä eikä se saa sisältää puolipisteitä, &- ja *-merkkejä.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(`${kirjautunut};${aihe}` in localStorage){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
@@ -138,11 +140,19 @@ function vahvistaAanestys(){
     }
 }
 
-function paivitaAanestykset(){
+function haeAanestykset(){
     for(n=0; n<localStorage.length; n++){
-        if(localStorage.key(n).indexOf(kirjautunut) == 0 && localStorage.key(n).includes("&") == false 
-        && localStorage.key(n).includes("*") == false && localStorage.key(n).includes(";") == true){
-            console.log(localStorage.key(n));
+        if(localStorage.getItem(`${kirjautunut};&`) == "yllapitaja"){
+            if(localStorage.key(n).startsWith(kirjautunut) && localStorage.key(n).includes("&") == false 
+            && localStorage.key(n).includes("*") == false && localStorage.key(n).includes(";") == true){
+                // let tilanne = localStorage.getItem(localStorage.key(n));
+                let nimi = localStorage.key(n);
+                let nimiPilkottu = nimi.split(";");
+                let testi = document.createElement("li");
+                let testiNimi = document.createTextNode(nimiPilkottu[1].padEnd(25, " "));
+                testi.appendChild(testiNimi);
+                document.querySelector("ul").appendChild(testi);
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ Tämä vaatii onnistuneen sisäänkirjautumisen käyttäjäprofiililla. Kun käy
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen sekä päättää vaihtoehdot äänestäjille; äänestykset ovat joko-tai-tyyppisiä. Äänestys avataan jos...
 
 - äänestyksen nimi ei ole tyhjä merkkijono, sisällä puolipisteitä tai merkkejä & ja *
+- äänestyksen nimi ei ylitä 25 merkkiä
 - äänestyksen nimi on vapaa (käyttäjällä itsellään ei ole olemassa samannimistä äänestystä).
 
 Tietojen puutteista ilmoitetaan käyttäjälle.
