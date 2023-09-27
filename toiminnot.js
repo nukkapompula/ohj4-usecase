@@ -1,7 +1,12 @@
 var kirjautunut = null;
 var inforuutu = document.getElementById("info");
-document.querySelector("ul").addEventListener("mousedown", function(event){
-    console.log(event.target);
+
+// ylläpitäjä poistaa äänestyksiään klikkaamalla
+document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", function(event){
+    let kohde = event.target.innerHTML;
+    let kohdePilkottu = kohde.split(" | ");
+    localStorage.removeItem(`${kirjautunut};${kohdePilkottu[0]}`);
+    haeAanestykset();
 })
 
 // käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
@@ -42,6 +47,7 @@ function kirjauduSisaan(){
         document.getElementById("yllapitajanEtusivu").style.display = "block";
         document.getElementById("etusivu").style.display = "none";
         inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
+        haeAanestykset();
     }
 }
 
@@ -120,8 +126,8 @@ function vahvistaAanestys(){
     let aihe = document.getElementById("uusiAanestysNimi").value;
     let ehdokas1 = document.getElementById("uusiEhdokas1").value;
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
-    if(aihe.length == 0 || aihe.length > 25 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*")){
-        inforuutu.innerHTML = "Nimen minimipituus on 1 merkki, maksimipituus 25 merkkiä eikä se saa sisältää puolipisteitä, &- ja *-merkkejä.";
+    if(aihe.length == 0 || aihe.length > 25 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*") || aihe.includes("|")){
+        inforuutu.innerHTML = "Nimen minimipituus on 1 merkki, maksimipituus 25 merkkiä eikä se saa sisältää puolipisteitä, &-, *- tai |-merkkejä.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(`${kirjautunut};${aihe}` in localStorage){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
@@ -140,6 +146,7 @@ function vahvistaAanestys(){
         document.getElementById("uusiAanestysNimi").value = "";
         document.getElementById("uusiEhdokas1").value = "";
         document.getElementById("uusiEhdokas2").value = "";
+        haeAanestykset();
     }
 }
 
@@ -161,7 +168,7 @@ function haeAanestykset(){
                 let aanestys = document.createElement("li");
                 let aanestysRivi = document.createTextNode(nimiPilkottu[1] + " | " + tilannePilkottu);
                 aanestys.appendChild(aanestysRivi);
-                document.querySelector("ul").appendChild(aanestys);
+                document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
             }
         }
     }
