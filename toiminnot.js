@@ -145,11 +145,12 @@ function haeAanestykset(){
         if(localStorage.getItem(`${kirjautunut};&`) == "yllapitaja"){
             if(localStorage.key(n).startsWith(kirjautunut) && localStorage.key(n).includes("&") == false 
             && localStorage.key(n).includes("*") == false && localStorage.key(n).includes(";") == true){
-                // let tilanne = localStorage.getItem(localStorage.key(n));
                 let nimi = localStorage.key(n);
                 let nimiPilkottu = nimi.split(";");
+                let tilanne = localStorage.getItem(localStorage.key(n));
+                let tilannePilkottu = tilanne.replace(/;/g, " ");
                 let testi = document.createElement("li");
-                let testiNimi = document.createTextNode(nimiPilkottu[1].padEnd(25, " "));
+                let testiNimi = document.createTextNode(nimiPilkottu[1] + " | " + tilannePilkottu);
                 testi.appendChild(testiNimi);
                 document.querySelector("ul").appendChild(testi);
             }
