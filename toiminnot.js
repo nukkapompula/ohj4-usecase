@@ -1,5 +1,8 @@
 var kirjautunut = null;
 var inforuutu = document.getElementById("info");
+document.querySelector("ul").addEventListener("mousedown", function(event){
+    console.log(event.target);
+})
 
 // käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
 
@@ -141,12 +144,13 @@ function vahvistaAanestys(){
 }
 
 function haeAanestykset(){
-    // alustetaan lista, jottei sama äänestys päädy sinne kahdesti
+    // alustetaan lista
     let kirjasto = document.querySelector("ul");
     while(kirjasto.firstChild){
         kirjasto.removeChild(kirjasto.lastChild);
     }
     for(n=0; n<localStorage.length; n++){
+        // ylläpitäjälle näytetään hänen omat äänestyksensä
         if(localStorage.getItem(`${kirjautunut};&`) == "yllapitaja"){
             if(localStorage.key(n).startsWith(kirjautunut) && localStorage.key(n).includes("&") == false 
             && localStorage.key(n).includes("*") == false && localStorage.key(n).includes(";") == true){
@@ -154,10 +158,10 @@ function haeAanestykset(){
                 let nimiPilkottu = nimi.split(";");
                 let tilanne = localStorage.getItem(localStorage.key(n));
                 let tilannePilkottu = tilanne.replace(/;/g, " ");
-                let testi = document.createElement("li");
-                let testiNimi = document.createTextNode(nimiPilkottu[1] + " | " + tilannePilkottu);
-                testi.appendChild(testiNimi);
-                document.querySelector("ul").appendChild(testi);
+                let aanestys = document.createElement("li");
+                let aanestysRivi = document.createTextNode(nimiPilkottu[1] + " | " + tilannePilkottu);
+                aanestys.appendChild(aanestysRivi);
+                document.querySelector("ul").appendChild(aanestys);
             }
         }
     }
