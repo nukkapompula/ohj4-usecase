@@ -141,6 +141,11 @@ function vahvistaAanestys(){
 }
 
 function haeAanestykset(){
+    // alustetaan lista, jottei sama äänestys päädy sinne kahdesti
+    let kirjasto = document.querySelector("ul");
+    while(kirjasto.firstChild){
+        kirjasto.removeChild(kirjasto.lastChild);
+    }
     for(n=0; n<localStorage.length; n++){
         if(localStorage.getItem(`${kirjautunut};&`) == "yllapitaja"){
             if(localStorage.key(n).startsWith(kirjautunut) && localStorage.key(n).includes("&") == false 

@@ -31,7 +31,7 @@ Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"
 Tietojen puutteista ilmoitetaan käyttäjälle.
 
 ## Poista äänestys
-Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläpitäjänä. Lisäksi käyttäjän on täytynyt luoda vähintään yksi äänestys ennen kuin "Poista äänestys"-painike tulee näkyviin. Käyttäjä kykenee poistamaan vain itse avaamiaan äänestyksiä.
+Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläpitäjänä. Käyttäjä kykenee poistamaan vain itse avaamiaan äänestyksiä. Äänestys pyyhitään kun ylläpitäjä klikkaa sitä omalla etusivullaan.
 
 ## Selaa äänestyksiä
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Äänestäjä"-roolisella käyttäjällä. Käyttäjä näkee täällä kaikki ylläpitäjien avaamat aktiiviset äänestykset. Halutessaan hän voi valita äänestyksen, jolloin siirrytään käyttötapaukseen "Valitse äänestys".
