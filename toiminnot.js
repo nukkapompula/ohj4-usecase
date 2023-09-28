@@ -1,5 +1,6 @@
 var kirjautunut = null;
 var inforuutu = document.getElementById("info");
+var avaaja = null;
 
 // ylläpitäjä poistaa äänestyksiään klikkaamalla
 document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", function(event){
@@ -15,6 +16,7 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
     let kohdePilkottu = kohde.split(" | Avaaja: ");
     let rimpsu = localStorage.getItem(`${kohdePilkottu[1]};${kohdePilkottu[0]}`);
     let rimpsuPilkottu = rimpsu.split(";");
+    avaaja = kohdePilkottu[1];
     document.getElementById("aanestajanEtusivu").style.display = "none";
     document.getElementById("katsoAanestysta").style.display = "block";
     document.getElementById("aanestyksenAihe").innerHTML = `${kohdePilkottu[0]}`;
@@ -24,8 +26,21 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
 
 // ääni annetaan ehdokasta klikkaamalla
 document.getElementById("ehdokas1").addEventListener("mousedown", function(event){
-    console.log(event.target.innerHTML);
-    //localStorage.setItem(``);
+    let kohde = event.target.innerHTML;
+    let kohdePilkottu = kohde.split(" (ääniä: ");
+    let aanestys = document.getElementById("aanestyksenAihe").innerHTML;
+    let paivitettava = localStorage.getItem(`${avaaja};${aanestys}`);
+    let paivitettavaPilkottu = paivitettava.split(";");
+    // katsotaan onko käyttäjä jo vaikuttanut tässä äänestyksessä
+    if(localStorage.getItem(`${kirjautunut};${aanestys}`) == null){
+        localStorage.setItem(`${kirjautunut};${aanestys}`, kohdePilkottu[0]);
+        localStorage.setItem(`${avaaja};${aanestys}`, `${paivitettavaPilkottu[0]};${Number(paivitettavaPilkottu[1]) + 1};${paivitettavaPilkottu[2]};${Number(paivitettavaPilkottu[3]) + 0}`);
+        document.getElementById("aanestajanEtusivu").style.display = "block";
+        document.getElementById("katsoAanestysta").style.display = "none";
+        inforuutu.innerHTML = `Tuit ehdokasta ${kohdePilkottu[0]} äänestyksessä ${aanestys}!`;
+    } else {
+        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${kohdePilkottu[0]}.`;
+    }
 })
 
 document.getElementById("ehdokas2").addEventListener("mousedown", function(event){
