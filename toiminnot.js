@@ -9,6 +9,17 @@ document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", 
     haeAanestykset();
 })
 
+// äänestäjä näkee tilanteen äänestystä klikkaamalla
+document.getElementById("avatutAanestykset").addEventListener("mousedown", function(event){
+    let kohde = event.target.innerHTML;
+    let kohdePilkottu = kohde.split(" | Avaaja: ");
+    let rimpsu = localStorage.getItem(`${kohdePilkottu[1]};${kohdePilkottu[0]}`);
+    console.log(rimpsu);
+    document.getElementById("aanestajanEtusivu").style.display = "none";
+    document.getElementById("katsoAanestysta").style.display = "block";
+    document.getElementById("aanestyksenAihe").innerHTML = `${kohdePilkottu[0]}`;
+})
+
 // käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
 
 // testiylläpitäjä
@@ -120,6 +131,9 @@ function peruutaEtusivulle(){
         document.getElementById("uusiAanestysNimi").value = "";
         document.getElementById("uusiEhdokas1").value = "";
         document.getElementById("uusiEhdokas2").value = "";
+    } else {
+        document.getElementById("aanestajanEtusivu").style.display = "block";
+        document.getElementById("katsoAanestysta").style.display = "none";
     }
 }
 
@@ -157,7 +171,7 @@ function haeAanestykset(){
     while(yllapitajanLista.firstChild){
         yllapitajanLista.removeChild(yllapitajanLista.lastChild);
     }
-    let aanestajanLista = document.getElementById("aanestyksetMuille");
+    let aanestajanLista = document.getElementById("avatutAanestykset");
     while(aanestajanLista.firstChild){
         aanestajanLista.removeChild(aanestajanLista.lastChild);
     }
@@ -175,6 +189,7 @@ function haeAanestykset(){
                 aanestys.appendChild(aanestysRivi);
                 document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
             }
+        // äänestäjä näkee ylläpitäjien avaamat äänestykset    
         } else {
             if(localStorage.key(n).includes("&") == false && localStorage.key(n).includes("*") == false
             && localStorage.key(n).includes(";") == true){
@@ -183,7 +198,7 @@ function haeAanestykset(){
                 let aanestys = document.createElement("li");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
-                document.getElementById("aanestyksetMuille").appendChild(aanestys);
+                document.getElementById("avatutAanestykset").appendChild(aanestys);
             }
         }
     }
