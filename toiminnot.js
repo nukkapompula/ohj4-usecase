@@ -15,7 +15,6 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
     let kohdePilkottu = kohde.split(" | Avaaja: ");
     let rimpsu = localStorage.getItem(`${kohdePilkottu[1]};${kohdePilkottu[0]}`);
     let rimpsuPilkottu = rimpsu.split(";");
-    console.log(rimpsu);
     document.getElementById("aanestajanEtusivu").style.display = "none";
     document.getElementById("katsoAanestysta").style.display = "block";
     document.getElementById("aanestyksenAihe").innerHTML = `${kohdePilkottu[0]}`;
@@ -23,13 +22,20 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
     document.getElementById("ehdokas2").innerHTML = `${rimpsuPilkottu[2]} (ääniä: ${rimpsuPilkottu[3]})`;
 })
 
-// käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
+// ääni annetaan ehdokasta klikkaamalla
+document.getElementById("ehdokas1").addEventListener("mousedown", function(event){
+    console.log(event.target.innerHTML);
+})
 
+document.getElementById("ehdokas2").addEventListener("mousedown", function(event){
+    console.log(event.target.innerHTML);
+})
+
+// käyttäjätiedoissa "&" merkitsee roolia ja "*" salasanaa
 // testiylläpitäjä
 localStorage.setItem("a", "a");
 localStorage.setItem("a" + ";&", "yllapitaja");
 localStorage.setItem("a" + ";*", "a");
-
 // testiäänestäjä
 localStorage.setItem("b", "b");
 localStorage.setItem("b" + ";&", "aanestaja");
@@ -187,7 +193,7 @@ function haeAanestykset(){
                 let nimiPilkottu = nimi.split(";");
                 let tilanne = localStorage.getItem(localStorage.key(n));
                 let tilannePilkottu = tilanne.split(";")
-                let aanestys = document.createElement("li");
+                let aanestys = document.createElement("p");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
                 document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
@@ -198,7 +204,7 @@ function haeAanestykset(){
             && localStorage.key(n).includes(";") == true){
                 let nimi = localStorage.key(n);
                 let nimiPilkottu = nimi.split(";");
-                let aanestys = document.createElement("li");
+                let aanestys = document.createElement("p");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
                 document.getElementById("avatutAanestykset").appendChild(aanestys);
