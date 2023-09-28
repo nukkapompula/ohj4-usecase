@@ -14,10 +14,13 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" | Avaaja: ");
     let rimpsu = localStorage.getItem(`${kohdePilkottu[1]};${kohdePilkottu[0]}`);
+    let rimpsuPilkottu = rimpsu.split(";");
     console.log(rimpsu);
     document.getElementById("aanestajanEtusivu").style.display = "none";
     document.getElementById("katsoAanestysta").style.display = "block";
     document.getElementById("aanestyksenAihe").innerHTML = `${kohdePilkottu[0]}`;
+    document.getElementById("ehdokas1").innerHTML = `${rimpsuPilkottu[0]} (${rimpsuPilkottu[1]} ääntä)`;
+    document.getElementById("ehdokas2").innerHTML = `${rimpsuPilkottu[2]} (${rimpsuPilkottu[3]} ääntä)`;
 })
 
 // käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
