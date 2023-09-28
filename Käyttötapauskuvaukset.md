@@ -39,4 +39,4 @@ Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläp
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Äänestäjä"-roolisella käyttäjällä. Käyttäjä näkee täällä kaikki ylläpitäjien avaamat aktiiviset äänestykset. Halutessaan hän voi valita äänestyksen, jolloin siirrytään käyttötapaukseen "Valitse äänestys".
 
 ## Valitse äänestys
-Tänne päädytään vain tapauksen "Selaa äänestyksiä" jälkeen, halutun äänestyksen valikoiduttua. Käyttäjä näkee valitun äänestyksen tilanteen (kuinka paljon vaihtoehdot ovat keränneet ääniä) ja äänestyksen avaajan nimimerkin. Halutessaan käyttäjä voi myös äänestää yhtä vaihtoehdoista ja siten vaikuttaa tilanteeseen.
+Tänne päädytään vain tapauksen "Selaa äänestyksiä" jälkeen, halutun äänestyksen valikoiduttua. Käyttäjä näkee valitun äänestyksen tilanteen (kuinka paljon vaihtoehdot ovat keränneet ääniä) ja äänestyksen avaajan nimimerkin. Halutessaan käyttäjä voi myös äänestää yhtä vaihtoehdoista ja siten vaikuttaa tilanteeseen. Kun ääni on annettu, ei käyttäjä voi enää muuttaa kantaansa ko. äänestyksessä.

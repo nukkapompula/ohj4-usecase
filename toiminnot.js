@@ -25,6 +25,7 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
 // ääni annetaan ehdokasta klikkaamalla
 document.getElementById("ehdokas1").addEventListener("mousedown", function(event){
     console.log(event.target.innerHTML);
+    //localStorage.setItem(``);
 })
 
 document.getElementById("ehdokas2").addEventListener("mousedown", function(event){
