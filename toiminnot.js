@@ -19,8 +19,8 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
     document.getElementById("aanestajanEtusivu").style.display = "none";
     document.getElementById("katsoAanestysta").style.display = "block";
     document.getElementById("aanestyksenAihe").innerHTML = `${kohdePilkottu[0]}`;
-    document.getElementById("ehdokas1").innerHTML = `${rimpsuPilkottu[0]} (${rimpsuPilkottu[1]} ääntä)`;
-    document.getElementById("ehdokas2").innerHTML = `${rimpsuPilkottu[2]} (${rimpsuPilkottu[3]} ääntä)`;
+    document.getElementById("ehdokas1").innerHTML = `${rimpsuPilkottu[0]} (ääniä: ${rimpsuPilkottu[1]})`;
+    document.getElementById("ehdokas2").innerHTML = `${rimpsuPilkottu[2]} (ääniä: ${rimpsuPilkottu[3]})`;
 })
 
 // käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa
@@ -186,9 +186,9 @@ function haeAanestykset(){
                 let nimi = localStorage.key(n);
                 let nimiPilkottu = nimi.split(";");
                 let tilanne = localStorage.getItem(localStorage.key(n));
-                let tilannePilkottu = tilanne.replace(/;/g, " ");
+                let tilannePilkottu = tilanne.split(";")
                 let aanestys = document.createElement("li");
-                let aanestysRivi = document.createTextNode(nimiPilkottu[1] + " | " + tilannePilkottu);
+                let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
                 document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
             }
