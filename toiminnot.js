@@ -40,6 +40,7 @@ function kirjauduSisaan(){
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("etusivu").style.display = "none";
         inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
+        haeAanestykset();
     } else {
         kirjautunut = nimi;
         document.getElementById("kayttajaNimi").value = "";
@@ -151,10 +152,14 @@ function vahvistaAanestys(){
 }
 
 function haeAanestykset(){
-    // alustetaan lista
-    let kirjasto = document.getElementById("yllapitajanAanestykset");
-    while(kirjasto.firstChild){
-        kirjasto.removeChild(kirjasto.lastChild);
+    // alustetaan käyttäjätyypeille piirrettävät listat
+    let yllapitajanLista = document.getElementById("yllapitajanAanestykset");
+    while(yllapitajanLista.firstChild){
+        yllapitajanLista.removeChild(yllapitajanLista.lastChild);
+    }
+    let aanestajanLista = document.getElementById("aanestyksetMuille");
+    while(aanestajanLista.firstChild){
+        aanestajanLista.removeChild(aanestajanLista.lastChild);
     }
     for(n=0; n<localStorage.length; n++){
         // ylläpitäjälle näytetään hänen omat äänestyksensä
@@ -169,6 +174,16 @@ function haeAanestykset(){
                 let aanestysRivi = document.createTextNode(nimiPilkottu[1] + " | " + tilannePilkottu);
                 aanestys.appendChild(aanestysRivi);
                 document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
+            }
+        } else {
+            if(localStorage.key(n).includes("&") == false && localStorage.key(n).includes("*") == false
+            && localStorage.key(n).includes(";") == true){
+                let nimi = localStorage.key(n);
+                let nimiPilkottu = nimi.split(";");
+                let aanestys = document.createElement("li");
+                let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
+                aanestys.appendChild(aanestysRivi);
+                document.getElementById("aanestyksetMuille").appendChild(aanestys);
             }
         }
     }

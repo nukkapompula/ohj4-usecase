@@ -6,7 +6,7 @@ Alla luetellut toiminnot kuvaavat sovelluksen erilaisia käyttötapauksia pääo
 
 - käyttäjänimi on vapaa
 - käyttäjänimi ei sisällä välilyöntejä, puolipisteitä tai merkkejä & ja *
-- nimi ei ole tyhjä mutta alittaa 20 merkkiä
+- nimi ei ole tyhjä tai ylitä 20 merkkiä
 - salasanan pituus on vähintään 5 merkkiä eikä sisällä puolipisteitä.
 
 Kun edellä mainitut seikat ovat kunnossa, luodaan tietojen mukainen käyttäjäprofiili.
@@ -27,8 +27,8 @@ Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"
 
 - äänestyksen nimi ei ole tyhjä merkkijono, sisällä puolipisteitä tai merkkejä &, *, |
 - äänestyksen nimi ei ylitä 30 merkkiä
-- äänestyksen nimi on vapaa (käyttäjällä itsellään ei ole olemassa samannimistä äänestystä).
-- asetetut ehdokkaat eivät ole tyhjiä merkkijonoja tai sisällä puolipisteitä
+- äänestyksen nimi on vapaa (käyttäjällä itsellään ei ole olemassa samannimistä äänestystä)
+- asetetut ehdokkaat eivät ole tyhjiä merkkijonoja tai sisällä puolipisteitä.
 
 Tietojen puutteista ilmoitetaan käyttäjälle.
 
@@ -39,4 +39,4 @@ Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläp
 Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Äänestäjä"-roolisella käyttäjällä. Käyttäjä näkee täällä kaikki ylläpitäjien avaamat aktiiviset äänestykset. Halutessaan hän voi valita äänestyksen, jolloin siirrytään käyttötapaukseen "Valitse äänestys".
 
 ## Valitse äänestys
-Tänne päädytään vain tapauksen "Selaa äänestyksiä" jälkeen, halutun äänestyksen valikoiduttua. Käyttäjä näkee valitun äänestyksen tilanteen (kuinka paljon kukin vaihtoehto on kerännyt ääniä) ja äänestyksen avaajan nimimerkin. Halutessaan käyttäjä voi myös äänestää yhtä vaihtoehdoista ja siten vaikuttaa tilanteeseen.
+Tänne päädytään vain tapauksen "Selaa äänestyksiä" jälkeen, halutun äänestyksen valikoiduttua. Käyttäjä näkee valitun äänestyksen tilanteen (kuinka paljon vaihtoehdot ovat keränneet ääniä) ja äänestyksen avaajan nimimerkin. Halutessaan käyttäjä voi myös äänestää yhtä vaihtoehdoista ja siten vaikuttaa tilanteeseen.
