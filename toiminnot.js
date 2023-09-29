@@ -20,7 +20,7 @@ document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", 
     localStorage.removeItem(`${kirjautunut};${kohdePilkottu[0]}`);
     // poistetaan tieto kaikista äänestyksessä äänestäneistä
     for(n=0; n<localStorage.length; n++){
-        if(localStorage.key(n).includes(kohdePilkottu[0])){
+        if(localStorage.key(n).includes(kohdePilkottu[0]) == true){
             localStorage.removeItem(localStorage.key(n));
         }
     }
