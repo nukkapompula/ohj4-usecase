@@ -35,7 +35,7 @@ document.getElementById("avatutAanestykset").addEventListener("mousedown", funct
     document.getElementById("ehdokas2").innerHTML = `${rimpsuPilkottu[2]} (ääniä: ${rimpsuPilkottu[3]})`;
 })
 
-// ääni annetaan ehdokasta klikkaamalla
+// ääni annetaan ehdokasta klikkaamalla, alla ehdokkaan 1 äänestäminen
 document.getElementById("ehdokas1").addEventListener("mousedown", function(event){
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" (ääniä: ");
@@ -50,12 +50,25 @@ document.getElementById("ehdokas1").addEventListener("mousedown", function(event
         document.getElementById("katsoAanestysta").style.display = "none";
         inforuutu.innerHTML = `Tuit ehdokasta ${kohdePilkottu[0]} äänestyksessä ${aanestys}!`;
     } else {
-        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${kohdePilkottu[0]}.`;
+        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
     }
 })
 
 document.getElementById("ehdokas2").addEventListener("mousedown", function(event){
-    console.log(event.target.innerHTML);
+    let kohde = event.target.innerHTML;
+    let kohdePilkottu = kohde.split(" (ääniä: ");
+    let aanestys = document.getElementById("aanestyksenAihe").innerHTML;
+    let paivitettava = localStorage.getItem(`${avaaja};${aanestys}`);
+    let paivitettavaPilkottu = paivitettava.split(";");
+    if(localStorage.getItem(`${kirjautunut}¤${aanestys}`) == null){
+        localStorage.setItem(`${kirjautunut}¤${aanestys}`, kohdePilkottu[0]);
+        localStorage.setItem(`${avaaja};${aanestys}`, `${paivitettavaPilkottu[0]};${Number(paivitettavaPilkottu[1]) + 0};${paivitettavaPilkottu[2]};${Number(paivitettavaPilkottu[3]) + 1}`);
+        document.getElementById("aanestajanEtusivu").style.display = "block";
+        document.getElementById("katsoAanestysta").style.display = "none";
+        inforuutu.innerHTML = `Tuit ehdokasta ${kohdePilkottu[0]} äänestyksessä ${aanestys}!`;
+    } else {
+        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
+    }
 })
 
 // testiylläpitäjä
