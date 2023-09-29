@@ -52,6 +52,7 @@ document.getElementById("ehdokas1").addEventListener("mousedown", function(event
     } else {
         inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
     }
+    haeAanestykset();
 })
 
 document.getElementById("ehdokas2").addEventListener("mousedown", function(event){
@@ -69,6 +70,7 @@ document.getElementById("ehdokas2").addEventListener("mousedown", function(event
     } else {
         inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
     }
+    haeAanestykset();
 })
 
 // testiylläpitäjä
@@ -236,6 +238,7 @@ function haeAanestykset(){
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
                 aanestys.title = "";
+                // tieto äänestäjistä lisätään titleen
                 for(i=0; i<localStorage.length; i++){
                     if(localStorage.key(i).includes("¤") && localStorage.key(i).includes(nimiPilkottu[1])){
                         let todistus = localStorage.key(i);
@@ -255,6 +258,12 @@ function haeAanestykset(){
                 let aanestys = document.createElement("p");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
+                aanestys.title = "";
+                for(j=0; j<localStorage.length; j++){
+                    if(localStorage.key(j).includes("¤") && localStorage.key(j).includes(kirjautunut) && localStorage.key(j).includes(nimiPilkottu[1])){
+                        aanestys.title = "Olet jo äänestänyt täällä!";
+                    }
+                }
                 document.getElementById("avatutAanestykset").appendChild(aanestys);
             }
         }
