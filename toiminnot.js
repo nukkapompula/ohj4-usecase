@@ -7,8 +7,8 @@ Käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa ja "¤" käytettyä ä�
 Tiedot tallennetaan localStorageen muotoon...
     avain                               arvo
     KÄYTTÄJÄNIMI                        käyttäjänimi
-    KÄYTTÄJÄNIMI;ROOLI                  "yllapitaja" tai "aanestaja"
-    KÄYTTÄJÄNIMI;SALASANA               salasana
+    KÄYTTÄJÄNIMI;&                      "yllapitaja" tai "aanestaja"
+    KÄYTTÄJÄNIMI;*                      salasana
     KÄYTTÄJÄNIMI;ÄÄNESTYKSEN NIMI       ehdokkaan 1 nimi;äänet;ehdokkaan 2 nimi;äänet
     KÄYTTÄJÄNIMI¤ÄÄNESTYKSEN NIMI       äänestetty ehdokas 
 */
@@ -235,6 +235,15 @@ function haeAanestykset(){
                 let aanestys = document.createElement("p");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
+                aanestys.title = "";
+                for(i=0; i<localStorage.length; i++){
+                    if(localStorage.key(i).includes("¤") && localStorage.key(i).includes(nimiPilkottu[1])){
+                        let todistus = localStorage.key(i);
+                        let todistusPilkottu = todistus.split("¤");
+                        let aanestetty = localStorage.getItem(todistus);
+                        aanestys.title += `${todistusPilkottu[0]} äänesti ehdokasta ${aanestetty}\n`;
+                    }
+                }
                 document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
             }
         // äänestäjä näkee ylläpitäjien avaamat äänestykset    

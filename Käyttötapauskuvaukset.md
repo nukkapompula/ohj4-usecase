@@ -32,6 +32,8 @@ Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"
 
 Tietojen puutteista ilmoitetaan käyttäjälle.
 
+Kun muut ovat äänestäneet, ylläpitäjä näkee kunkin äänestäjän kannan asiaan pitämällä osoitinta äänestyksen kohdalla.
+
 ## Poista äänestys
 Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläpitäjänä. Käyttäjä kykenee poistamaan vain itse avaamiaan äänestyksiä. Äänestys pyyhitään kun ylläpitäjä klikkaa sitä omalla etusivullaan.
 
