@@ -2,6 +2,17 @@ var kirjautunut = null;
 var inforuutu = document.getElementById("info");
 var avaaja = null;
 
+/*
+Käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa ja "¤" käytettyä äänestysoikeutta.
+Tiedot tallennetaan localStorageen muotoon...
+    avain                               arvo
+    KÄYTTÄJÄNIMI                        käyttäjänimi
+    KÄYTTÄJÄNIMI;ROOLI                  "yllapitaja" tai "aanestaja"
+    KÄYTTÄJÄNIMI;SALASANA               salasana
+    KÄYTTÄJÄNIMI;ÄÄNESTYKSEN NIMI       ehdokkaan 1 nimi;äänet;ehdokkaan 2 nimi;äänet
+    KÄYTTÄJÄNIMI¤ÄÄNESTYKSEN NIMI       äänestetty ehdokas 
+*/
+
 // ylläpitäjä poistaa äänestyksiään klikkaamalla
 document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", function(event){
     let kohde = event.target.innerHTML;
@@ -32,8 +43,8 @@ document.getElementById("ehdokas1").addEventListener("mousedown", function(event
     let paivitettava = localStorage.getItem(`${avaaja};${aanestys}`);
     let paivitettavaPilkottu = paivitettava.split(";");
     // katsotaan onko käyttäjä jo vaikuttanut tässä äänestyksessä
-    if(localStorage.getItem(`${kirjautunut};${aanestys}`) == null){
-        localStorage.setItem(`${kirjautunut};${aanestys}`, kohdePilkottu[0]);
+    if(localStorage.getItem(`${kirjautunut}¤${aanestys}`) == null){
+        localStorage.setItem(`${kirjautunut}¤${aanestys}`, kohdePilkottu[0]);
         localStorage.setItem(`${avaaja};${aanestys}`, `${paivitettavaPilkottu[0]};${Number(paivitettavaPilkottu[1]) + 1};${paivitettavaPilkottu[2]};${Number(paivitettavaPilkottu[3]) + 0}`);
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("katsoAanestysta").style.display = "none";
@@ -47,7 +58,6 @@ document.getElementById("ehdokas2").addEventListener("mousedown", function(event
     console.log(event.target.innerHTML);
 })
 
-// käyttäjätiedoissa "&" merkitsee roolia ja "*" salasanaa
 // testiylläpitäjä
 localStorage.setItem("a", "a");
 localStorage.setItem("a" + ";&", "yllapitaja");
@@ -98,8 +108,8 @@ function vahvistaKayttaja(){
     let rooli = document.getElementById("rooli").value;
     let nimi = document.getElementById("uusiKayttajaNimi").value;
     let sana = document.getElementById("uusiSalasana").value;
-    if(nimi.length == 0 || nimi.length > 20 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*")){
-        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä, puolipistettä, &- tai *-merkkejä. Nimen maksimipituus on 20 merkkiä.";
+    if(nimi.length == 0 || nimi.length > 20 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*") || nimi.includes("¤")){
+        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä, puolipistettä, &-, ¤- tai *-merkkejä. Nimen maksimipituus on 20 merkkiä.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(localStorage.getItem(nimi) == nimi){
         inforuutu.innerHTML = "Käyttäjänimi ei ole vapaa."
@@ -166,8 +176,8 @@ function vahvistaAanestys(){
     let aihe = document.getElementById("uusiAanestysNimi").value;
     let ehdokas1 = document.getElementById("uusiEhdokas1").value;
     let ehdokas2 = document.getElementById("uusiEhdokas2").value;
-    if(aihe.length == 0 || aihe.length > 30 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*") || aihe.includes("|")){
-        inforuutu.innerHTML = "Nimen maksimipituus on 30 merkkiä eikä se saa sisältää puolipisteitä, &-, *- tai |-merkkejä.";
+    if(aihe.length == 0 || aihe.length > 30 || aihe.includes(";") || aihe.includes("&") || aihe.includes("*") || aihe.includes("|") || aihe.includes("¤")){
+        inforuutu.innerHTML = "Nimen maksimipituus on 30 merkkiä eikä se saa sisältää puolipisteitä, &-, *-, ¤- tai |-merkkejä.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(`${kirjautunut};${aihe}` in localStorage){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
@@ -217,7 +227,7 @@ function haeAanestykset(){
         // äänestäjä näkee ylläpitäjien avaamat äänestykset    
         } else {
             if(localStorage.key(n).includes("&") == false && localStorage.key(n).includes("*") == false
-            && localStorage.key(n).includes(";") == true){
+            && localStorage.key(n).includes("¤") == false && localStorage.key(n).includes(";") == true){
                 let nimi = localStorage.key(n);
                 let nimiPilkottu = nimi.split(";");
                 let aanestys = document.createElement("p");
