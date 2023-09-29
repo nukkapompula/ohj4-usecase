@@ -18,11 +18,13 @@ document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", 
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" | ");
     localStorage.removeItem(`${kirjautunut};${kohdePilkottu[0]}`);
+    inforuutu.innerHTML = `Äänestys ${kohdePilkottu[0]} poistettu!`;
     haeAanestykset();
 })
 
 // äänestäjä näkee tilanteen äänestystä klikkaamalla
 document.getElementById("avatutAanestykset").addEventListener("mousedown", function(event){
+    inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" | Avaaja: ");
     let rimpsu = localStorage.getItem(`${kohdePilkottu[1]};${kohdePilkottu[0]}`);
@@ -145,6 +147,7 @@ function vahvistaKayttaja(){
 }
 
 function peruutaAlkuun(){
+    inforuutu.innerHTML = "";
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("kayttajanLuominen").style.display = "none";
     document.getElementById("uusiKayttajaNimi").value = "";
@@ -172,6 +175,7 @@ function kirjauduUlos(){
 function luoAanestys(){
     document.getElementById("aanestyksenLuominen").style.display = "block";
     document.getElementById("yllapitajanEtusivu").style.display = "none";
+    inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
 }
 
 function peruutaEtusivulle(){
@@ -181,9 +185,11 @@ function peruutaEtusivulle(){
         document.getElementById("uusiAanestysNimi").value = "";
         document.getElementById("uusiEhdokas1").value = "";
         document.getElementById("uusiEhdokas2").value = "";
+        inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
     } else {
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("katsoAanestysta").style.display = "none";
+        inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
     }
 }
 
@@ -197,11 +203,11 @@ function vahvistaAanestys(){
     } else if(`${kirjautunut};${aihe}` in localStorage){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
         document.getElementById("uusiAanestysNimi").value = "";
-    } else if(ehdokas1.length == 0 || ehdokas1.includes(";")){
-        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä.";
+    } else if(ehdokas1.length == 0 || ehdokas1.length > 20 || ehdokas1.includes(";")){
+        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä tai ylitä 20 merkkiä.";
         document.getElementById("uusiEhdokas1").value = "";
-    } else if(ehdokas2.length == 0 || ehdokas2.includes(";")){
-        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä.";
+    } else if(ehdokas2.length == 0 || ehdokas2.length > 20 || ehdokas2.includes(";")){
+        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä tai ylitä 20 merkkiä.";
         document.getElementById("uusiEhdokas2").value = "";
     } else {
         localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
@@ -259,9 +265,10 @@ function haeAanestykset(){
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
                 aanestys.title = "";
+                // tieto äänen käyttämisestä titleen
                 for(j=0; j<localStorage.length; j++){
                     if(localStorage.key(j).includes("¤") && localStorage.key(j).includes(kirjautunut) && localStorage.key(j).includes(nimiPilkottu[1])){
-                        aanestys.title = "Olet jo äänestänyt täällä!";
+                        aanestys.title = "Äänioikeus käytetty!";
                     }
                 }
                 document.getElementById("avatutAanestykset").appendChild(aanestys);

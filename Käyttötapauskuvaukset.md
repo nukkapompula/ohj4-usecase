@@ -28,7 +28,7 @@ Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"
 - äänestyksen nimi ei ole tyhjä merkkijono, sisällä puolipisteitä tai merkkejä & * | ¤
 - äänestyksen nimi ei ylitä 30 merkkiä
 - äänestyksen nimi on vapaa (käyttäjällä itsellään ei ole olemassa samannimistä äänestystä)
-- asetetut ehdokkaat eivät ole tyhjiä merkkijonoja tai sisällä puolipisteitä.
+- asetetut ehdokkaat eivät ole tyhjiä merkkijonoja, ylitä 20 merkkiä tai sisällä puolipisteitä.
 
 Tietojen puutteista ilmoitetaan käyttäjälle.
 
