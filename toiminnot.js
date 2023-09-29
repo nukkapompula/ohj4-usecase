@@ -18,6 +18,12 @@ document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", 
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" | ");
     localStorage.removeItem(`${kirjautunut};${kohdePilkottu[0]}`);
+    // poistetaan tieto kaikista äänestyksessä äänestäneistä
+    for(n=0; n<localStorage.length; n++){
+        if(localStorage.key(n).includes(kohdePilkottu[0])){
+            localStorage.removeItem(localStorage.key(n));
+        }
+    }
     inforuutu.innerHTML = `Äänestys ${kohdePilkottu[0]} poistettu!`;
     haeAanestykset();
 })
@@ -213,7 +219,7 @@ function vahvistaAanestys(){
         localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
         document.getElementById("aanestyksenLuominen").style.display = "none";
         document.getElementById("yllapitajanEtusivu").style.display = "block";
-        inforuutu.innerHTML = `Äänestys aiheesta "${aihe}" luotu!`;
+        inforuutu.innerHTML = `Äänestys aiheesta ${aihe} luotu!`;
         document.getElementById("uusiAanestysNimi").value = "";
         document.getElementById("uusiEhdokas1").value = "";
         document.getElementById("uusiEhdokas2").value = "";
