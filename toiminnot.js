@@ -91,7 +91,7 @@ localStorage.setItem("b" + ";&", "aanestaja");
 localStorage.setItem("b" + ";*", "b");
 
 function kirjauduSisaan(){
-    inforuutu.innerHTML = "";
+    inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
     let nimi = document.getElementById("kayttajaNimi").value;
     let sana = document.getElementById("salasana").value;
     let tallennettuNimi = localStorage.getItem(nimi);
@@ -124,7 +124,7 @@ function kirjauduSisaan(){
 function luoKayttaja(){
     document.getElementById("kayttajanLuominen").style.display = "block";
     document.getElementById("etusivu").style.display = "none";
-    inforuutu.innerHTML = "";
+    inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
 }
 
 function vahvistaKayttaja(){
@@ -153,7 +153,7 @@ function vahvistaKayttaja(){
 }
 
 function peruutaAlkuun(){
-    inforuutu.innerHTML = "";
+    inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("kayttajanLuominen").style.display = "none";
     document.getElementById("uusiKayttajaNimi").value = "";
@@ -250,7 +250,7 @@ function haeAanestykset(){
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
                 aanestys.title = "";
-                aanestys.className = "mx-5 my-3 p-2 bg-warning rounded";
+                aanestys.className = "mx-4 my-3 p-2 bg-warning rounded";
                 // tieto äänestäjistä lisätään titleen
                 for(i=0; i<localStorage.length; i++){
                     if(localStorage.key(i).includes("¤") && localStorage.key(i).includes(nimiPilkottu[1])){
@@ -272,7 +272,7 @@ function haeAanestykset(){
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
                 aanestys.title = "Tämä on uusi sinulle.";
-                aanestys.className = "mx-5 my-3 p-2 bg-warning rounded";
+                aanestys.className = "mx-4 my-3 p-2 bg-warning rounded";
                 // tieto äänen käyttämisestä titleen
                 for(j=0; j<localStorage.length; j++){
                     if(localStorage.key(j).includes("¤") && localStorage.key(j).includes(kirjautunut) && localStorage.key(j).includes(nimiPilkottu[1])){
