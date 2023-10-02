@@ -9,7 +9,7 @@ Tiedot tallennetaan localStorageen muotoon...
     KÄYTTÄJÄNIMI                        käyttäjänimi
     KÄYTTÄJÄNIMI;&                      "yllapitaja" tai "aanestaja"
     KÄYTTÄJÄNIMI;*                      salasana
-    KÄYTTÄJÄNIMI;ÄÄNESTYKSEN NIMI       ehdokkaan 1 nimi;äänet;ehdokkaan 2 nimi;äänet
+    KÄYTTÄJÄNIMI;ÄÄNESTYKSEN NIMI       ehdokkaan 1 nimi;äänimäärä;ehdokkaan 2 nimi;äänimäärä
     KÄYTTÄJÄNIMI¤ÄÄNESTYKSEN NIMI       äänestetty ehdokas 
 */
 
@@ -18,7 +18,7 @@ document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", 
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" | ");
     localStorage.removeItem(`${kirjautunut};${kohdePilkottu[0]}`);
-    // poistetaan tieto kaikista äänestyksessä äänestäneistä
+    // poistetaan samalla tieto kaikista äänestyksessä äänestäneistä
     for(n=0; n<localStorage.length; n++){
         if(localStorage.key(n).includes(kohdePilkottu[0]) == true){
             localStorage.removeItem(localStorage.key(n));
@@ -58,11 +58,12 @@ document.getElementById("ehdokas1").addEventListener("mousedown", function(event
         document.getElementById("katsoAanestysta").style.display = "none";
         inforuutu.innerHTML = `Tuit ehdokasta <b>${kohdePilkottu[0]}</b> äänestyksessä <b>${aanestys}</b>!`;
     } else {
-        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
+        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle <b>${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}</b>.`;
     }
     haeAanestykset();
 })
 
+// ehdokkaan 2 äänestäminen
 document.getElementById("ehdokas2").addEventListener("mousedown", function(event){
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" (ääniä: ");
@@ -74,9 +75,9 @@ document.getElementById("ehdokas2").addEventListener("mousedown", function(event
         localStorage.setItem(`${avaaja};${aanestys}`, `${paivitettavaPilkottu[0]};${Number(paivitettavaPilkottu[1]) + 0};${paivitettavaPilkottu[2]};${Number(paivitettavaPilkottu[3]) + 1}`);
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("katsoAanestysta").style.display = "none";
-        inforuutu.innerHTML = `Tuit ehdokasta ${kohdePilkottu[0]} äänestyksessä ${aanestys}!`;
+        inforuutu.innerHTML = `Tuit ehdokasta <b>${kohdePilkottu[0]}</b> äänestyksessä <b>${aanestys}</b>!`;
     } else {
-        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
+        inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle <b>${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}</b>.`;
     }
     haeAanestykset();
 })
@@ -116,7 +117,7 @@ function kirjauduSisaan(){
         document.getElementById("salasana").value = "";
         document.getElementById("yllapitajanEtusivu").style.display = "block";
         document.getElementById("etusivu").style.display = "none";
-        inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
+        inforuutu.innerHTML = `Moi <b>${kirjautunut}</b>! Olet rooliltasi <b>Ylläpitäjä</b>.`;
         haeAanestykset();
     }
 }
@@ -146,7 +147,7 @@ function vahvistaKayttaja(){
         localStorage.setItem(nimi + ";*", sana);
         document.getElementById("etusivu").style.display = "block";
         document.getElementById("kayttajanLuominen").style.display = "none";
-        inforuutu.innerHTML = `Käyttäjä ${nimi} luotu!`;
+        inforuutu.innerHTML = `Käyttäjä <b>${nimi}</b> luotu!`;
         document.getElementById("uusiKayttajaNimi").value = "";
         document.getElementById("uusiSalasana").value = "";
     }
@@ -171,7 +172,7 @@ function testiIterointi(){
 }
 
 function kirjauduUlos(){
-    inforuutu.innerHTML = `${kirjautunut} kirjattu ulos, näkemiin!`;
+    inforuutu.innerHTML = `<b>${kirjautunut}</b> kirjattu ulos, näkemiin!`;
     kirjautunut = null;
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("aanestajanEtusivu").style.display = "none";
@@ -181,7 +182,7 @@ function kirjauduUlos(){
 function luoAanestys(){
     document.getElementById("aanestyksenLuominen").style.display = "block";
     document.getElementById("yllapitajanEtusivu").style.display = "none";
-    inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
+    inforuutu.innerHTML = `Moi <b>${kirjautunut}</b>! Olet rooliltasi <b>Ylläpitäjä</b>.`;
 }
 
 function peruutaEtusivulle(){
@@ -191,11 +192,11 @@ function peruutaEtusivulle(){
         document.getElementById("uusiAanestysNimi").value = "";
         document.getElementById("uusiEhdokas1").value = "";
         document.getElementById("uusiEhdokas2").value = "";
-        inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Ylläpitäjä.`;
+        inforuutu.innerHTML = `Moi <b>${kirjautunut}</b>! Olet rooliltasi <b>Ylläpitäjä</b>.`;
     } else {
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("katsoAanestysta").style.display = "none";
-        inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
+        inforuutu.innerHTML = `Moi <b>${kirjautunut}</b>! Olet rooliltasi <b>Äänestäjä</b>.`;
     }
 }
 
@@ -219,7 +220,7 @@ function vahvistaAanestys(){
         localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
         document.getElementById("aanestyksenLuominen").style.display = "none";
         document.getElementById("yllapitajanEtusivu").style.display = "block";
-        inforuutu.innerHTML = `Äänestys aiheesta ${aihe} luotu!`;
+        inforuutu.innerHTML = `Äänestys aiheesta <b>${aihe}</b> luotu!`;
         document.getElementById("uusiAanestysNimi").value = "";
         document.getElementById("uusiEhdokas1").value = "";
         document.getElementById("uusiEhdokas2").value = "";
@@ -238,26 +239,26 @@ function haeAanestykset(){
         aanestajanLista.removeChild(aanestajanLista.lastChild);
     }
     for(n=0; n<localStorage.length; n++){
-        // ylläpitäjälle näytetään hänen omat äänestyksensä
+        // ylläpitäjälle näytetään hänen järjestämänsä äänestykset
         if(localStorage.getItem(`${kirjautunut};&`) == "yllapitaja"){
             if(localStorage.key(n).startsWith(kirjautunut) && localStorage.key(n).includes("&") == false 
             && localStorage.key(n).includes("*") == false && localStorage.key(n).includes(";") == true){
                 let nimi = localStorage.key(n);
                 let nimiPilkottu = nimi.split(";");
                 let tilanne = localStorage.getItem(localStorage.key(n));
-                let tilannePilkottu = tilanne.split(";")
+                let tilannePilkottu = tilanne.split(";");
                 let aanestys = document.createElement("button");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
                 aanestys.title = "";
                 aanestys.className = "mx-4 my-3 p-2 bg-warning rounded";
-                // tieto äänestäjistä lisätään titleen
+                // tieto äänestäjistä lisätään äänestyksen titleen
                 for(i=0; i<localStorage.length; i++){
                     if(localStorage.key(i).includes("¤") && localStorage.key(i).includes(nimiPilkottu[1])){
                         let todistus = localStorage.key(i);
                         let todistusPilkottu = todistus.split("¤");
                         let aanestetty = localStorage.getItem(todistus);
-                        aanestys.title += `${todistusPilkottu[0]} äänesti ehdokasta ${aanestetty}\n`;
+                        aanestys.title += `"${todistusPilkottu[0]}" äänesti ehdokasta "${aanestetty}"\n`;
                     }
                 }
                 document.getElementById("yllapitajanAanestykset").appendChild(aanestys);
@@ -271,9 +272,9 @@ function haeAanestykset(){
                 let aanestys = document.createElement("button");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
-                aanestys.title = "Tämä on uusi sinulle.";
+                aanestys.title = "Tämä on sinulle uusi.";
                 aanestys.className = "mx-4 my-3 p-2 bg-warning rounded";
-                // tieto äänen käyttämisestä titleen
+                // tieto äänen käyttämisestä äänestyksen titleen
                 for(j=0; j<localStorage.length; j++){
                     if(localStorage.key(j).includes("¤") && localStorage.key(j).includes(kirjautunut) && localStorage.key(j).includes(nimiPilkottu[1])){
                         aanestys.title = "Äänioikeus käytetty!";
