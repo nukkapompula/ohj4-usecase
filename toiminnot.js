@@ -82,15 +82,6 @@ document.getElementById("ehdokas2").addEventListener("mousedown", function(event
     haeAanestykset();
 })
 
-// testiylläpitäjä
-localStorage.setItem("a", "a");
-localStorage.setItem("a" + ";&", "yllapitaja");
-localStorage.setItem("a" + ";*", "a");
-// testiäänestäjä
-localStorage.setItem("b", "b");
-localStorage.setItem("b" + ";&", "aanestaja");
-localStorage.setItem("b" + ";*", "b");
-
 function kirjauduSisaan(){
     inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
     let nimi = document.getElementById("kayttajaNimi").value;
@@ -159,16 +150,6 @@ function peruutaAlkuun(){
     document.getElementById("kayttajanLuominen").style.display = "none";
     document.getElementById("uusiKayttajaNimi").value = "";
     document.getElementById("uusiSalasana").value = "";
-}
-
-function testiTyhjennys(){
-    localStorage.clear();
-}
-
-function testiIterointi(){
-    for(i=0; i<localStorage.length; i++){
-        console.log(localStorage.key(i));
-    }
 }
 
 function kirjauduUlos(){
