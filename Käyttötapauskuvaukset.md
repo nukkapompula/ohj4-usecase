@@ -2,7 +2,7 @@
 Alla luetellut toiminnot kuvaavat sovelluksen erilaisia käyttötapauksia pääosin kronologisessa järjestyksessä.
 
 ## Luo profiili
-Sovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellaisen luomisprosessi laukaistaan tällä painikkeella. Käyttäjä valitsee ensin roolikseen joko "Ylläpitäjän" tai "Äänestäjän". Sitten hän kirjoittaa haluamansa käyttäjänimen sekä salasanan. Käyttäjälle annetaan virheilmoitus, mikäli annetut tiedot eivät täytä seuraavia ehtoja:
+Sovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellaisen luomisprosessi laukaistaan tällä painikkeella sovelluksen aloitussivulla. Käyttäjä valitsee ensin roolikseen joko "Ylläpitäjän" tai "Äänestäjän". Sitten hän kirjoittaa haluamansa käyttäjänimen sekä salasanan. Käyttäjälle annetaan virheilmoitus, mikäli annetut tiedot eivät täytä seuraavia ehtoja:
 
 - käyttäjänimi on vapaa
 - käyttäjänimi ei sisällä välilyöntejä, puolipisteitä tai merkkejä & * ¤
@@ -12,18 +12,18 @@ Sovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellais
 Kun edellä mainitut seikat ovat kunnossa, luodaan tietojen mukainen käyttäjäprofiili.
 
 ## Kirjaudu sisään
-Esiehtona sisäänkirjautumiseen on olemassaoleva käyttäjäprofiili. Tällä painikkeella saadaan esiin ruutu, jonne syötetään haluttu käyttäjänimi sekä ko. profiilin salasana. Kirjautuminen epäonnistuu jos:
+Käyttötapauksen "Luo profiili" tapaan tämäkin painike on esillä aloitussivulla. Käyttäjä syöttää halutun käyttäjänimen sekä ko. profiilin salasanan. Kirjautuminen epäonnistuu jos:
 
 - syötettyä käyttäjänimeä ei ole olemassa tai se on tyhjä merkkijono
 - salasana on väärä tai se on tyhjä merkkijono.
 
-Onnistunut kirjautuminen määrää käyttäjän mahdolliset toiminnot sovelluksessa hänen profiililleen valitsemansa roolin (Ylläpitäjä/Äänestäjä) mukaan. Niiden lisäksi molemmat käyttäjätyypit voivat myös toki kirjautua ulos ollessaan profiilinsa etusivulla.
+Onnistunut kirjautuminen avaa käyttäjälle toimintoja riippuen hänen roolistaan (Ylläpitäjä/Äänestäjä). Molemmat käyttäjätyypit voivat myös toki kirjautua ulos ollessaan profiilinsa etusivulla.
 
 ## Kirjaudu ulos
 Tämä vaatii onnistuneen sisäänkirjautumisen käyttäjäprofiililla. Kun käyttäjä kirjautuu ulos, hän pääsee sovelluksen alkuruutuun jossa pystyy joko luomaan profiilin tai kirjautumaan sisään.
 
 ## Luo äänestys
-Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Äänestyksen luomisen laukaisee yksinkertainen painike, jonka jälkeen ylläpitäjä antaa äänestykselleen nimen sekä päättää vaihtoehdot äänestäjille; äänestykset ovat joko-tai-tyyppisiä. Äänestys avataan jos...
+Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Ylläpitäjä"-roolisella käyttäjällä. Ylläpitäjä antaa äänestykselleen nimen sekä päättää vaihtoehdot äänestäjille; äänestykset ovat joko-tai-tyyppisiä. Äänestys avataan jos...
 
 - äänestyksen nimi ei ole tyhjä merkkijono, sisällä puolipisteitä tai merkkejä & * | ¤
 - äänestyksen nimi ei ylitä 30 merkkiä
@@ -39,7 +39,7 @@ Kun muut ovat äänestäneet, ylläpitäjä näkee kunkin äänestäjän kannan 
 Kuten "Luo äänestys", tämäkin toimenpide vaatii sisäänkirjautumisen ylläpitäjänä. Käyttäjä kykenee poistamaan vain itse avaamiaan äänestyksiä. Äänestys pyyhitään kun ylläpitäjä klikkaa sitä omalla etusivullaan.
 
 ## Selaa äänestyksiä
-Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Äänestäjä"-roolisella käyttäjällä. Käyttäjä näkee täällä kaikki ylläpitäjien avaamat aktiiviset äänestykset ja pitämällä osoitinta äänestyksen kohdalla hän saa tiedon, onko hän vaikuttanut jo ko. äänestykseen. Halutessaan hän voi valita äänestyksen, jolloin siirrytään käyttötapaukseen "Valitse äänestys".
+Esiehtona tälle tapaukselle on onnistunut sisäänkirjautuminen "Äänestäjä"-roolisella käyttäjällä. Käyttäjä näkee täällä kaikki ylläpitäjien avaamat aktiiviset äänestykset ja pitämällä osoitinta äänestyksen kohdalla hän saa tiedon, onko hän jo vaikuttanut ko. äänestykseen. Halutessaan hän voi valita äänestyksen, jolloin siirrytään käyttötapaukseen "Valitse äänestys".
 
 ## Valitse äänestys
 Tänne päädytään vain tapauksen "Selaa äänestyksiä" jälkeen, halutun äänestyksen valikoiduttua. Käyttäjä näkee valitun äänestyksen tilanteen (kuinka paljon vaihtoehdot ovat keränneet ääniä). Halutessaan käyttäjä voi myös äänestää yhtä vaihtoehdoista ja siten vaikuttaa tilanteeseen. Kun ääni on annettu, ei käyttäjä kykene enää muuttaa kantaansa ko. äänestyksessä.
