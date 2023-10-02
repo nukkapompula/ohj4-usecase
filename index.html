@@ -8,23 +8,20 @@
 </head>
 <body class="bg-light text-center">
 
-    <header class="p-3">
+    <header class="container p-3">
         <h1>Äänestyssovellus</h1>
-        <p id="info"></p>
+        <p id="info" class="text-muted"></p>
     </header>
 
-    <section id="etusivu" class="p-3">
-        <p>Käyttäjänimi: <input type="text" id="kayttajaNimi"></p>
-        <p>Salasana: <input type="password" id="salasana"></p>
-        <button onclick="kirjauduSisaan()">Kirjaudu sisään</button>
-        <br>
-        <br>
-        <br>
-        <p>Ei tiliä? Tee sellainen itsellesi!</p>
-        <button onclick="luoKayttaja()">Luo käyttäjä</button>
+    <section id="etusivu" class="container p-3">
+        <p>Käyttäjänimi: <input type="text" id="kayttajaNimi" class="m-1 rounded"></p>
+        <p>Salasana: <input type="password" id="salasana" class="m-1 rounded"></p>
+        <button onclick="kirjauduSisaan()" class="p-2 mb-3 bg-info rounded">Kirjaudu sisään</button>
+        <p class="pt-5">Ei tiliä? Tee sellainen itsellesi!</p>
+        <button onclick="luoKayttaja()" class="p-2 bg-warning rounded">Luo käyttäjä</button>
     </section>
 
-    <section id="kayttajanLuominen" style="display: none;">
+    <section id="kayttajanLuominen" style="display: none;" class="container p-3">
         <p>
             Päätä tilisi rooli. Jos tahdot luoda äänestyksiä muille, valitse "Ylläpitäjä". Jos haluat 
             ottaa kantaa asioihin, valitse "Äänestäjä".
@@ -39,7 +36,7 @@
         <button onclick="peruutaAlkuun()">Peruuta</button>
     </section>
 
-    <section id="aanestajanEtusivu" style="display: none;">
+    <section id="aanestajanEtusivu" style="display: none;" class="container p-3">
         <p>
             Jos muut ovat luoneet äänestyksiä, näet niiden aiheen alla. Klikkaamalla pääset tarkastelemaan 
             kyseisen äänestyksen ehdokkaita, tilannetta sekä vaikuttamaan jälkimmäiseen omalla äänelläsi!
@@ -49,7 +46,7 @@
         <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
     </section>
 
-    <section id="katsoAanestysta" style="display: none;">
+    <section id="katsoAanestysta" style="display: none;" class="container p-3">
         <p>
             Anna äänesi ehdokkaalle klikkaamalla. Pidä mielessä, ettet voi muuttaa kantaasi enää 
             äänestämisen jälkeen!
@@ -63,7 +60,7 @@
         <button onclick="peruutaEtusivulle()">Peruuta</button>
     </section>
 
-    <section id="yllapitajanEtusivu" style="display: none;">
+    <section id="yllapitajanEtusivu" style="display: none;" class="container p-3">
         <p>
             Täällä voit avata joko-tai-tyyppisiä äänestyksiä muille. Jos olet luonut äänestyksiä, näet 
             niiden nimet sekä tämänhetkiset äänestystilanteet alla. Pitämällä osoitinta äänestyksen 
@@ -75,7 +72,7 @@
         <button onclick="kirjauduUlos()">Kirjaudu ulos</button>
     </section>
 
-    <section id="aanestyksenLuominen" style="display: none;">
+    <section id="aanestyksenLuominen" style="display: none;" class="container p-3">
         <p>Nimeä äänestyksesi: <input type="text" id="uusiAanestysNimi"></p>
         <p>Ehdokkaan 1 nimi: <input type="text" id="uusiEhdokas1"></p>
         <p>Ehdokkaan 2 nimi: <input type="text" id="uusiEhdokas2"></p>
