@@ -24,13 +24,13 @@ document.getElementById("yllapitajanAanestykset").addEventListener("mousedown", 
             localStorage.removeItem(localStorage.key(n));
         }
     }
-    inforuutu.innerHTML = `Äänestys ${kohdePilkottu[0]} poistettu!`;
+    inforuutu.innerHTML = `Äänestys <b>${kohdePilkottu[0]}</b> poistettu!`;
     haeAanestykset();
 })
 
 // äänestäjä näkee tilanteen äänestystä klikkaamalla
 document.getElementById("avatutAanestykset").addEventListener("mousedown", function(event){
-    inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
+    inforuutu.innerHTML = `Moi <b>${kirjautunut}</b>! Olet rooliltasi <b>Äänestäjä</b>.`;
     let kohde = event.target.innerHTML;
     let kohdePilkottu = kohde.split(" | Avaaja: ");
     let rimpsu = localStorage.getItem(`${kohdePilkottu[1]};${kohdePilkottu[0]}`);
@@ -56,7 +56,7 @@ document.getElementById("ehdokas1").addEventListener("mousedown", function(event
         localStorage.setItem(`${avaaja};${aanestys}`, `${paivitettavaPilkottu[0]};${Number(paivitettavaPilkottu[1]) + 1};${paivitettavaPilkottu[2]};${Number(paivitettavaPilkottu[3]) + 0}`);
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("katsoAanestysta").style.display = "none";
-        inforuutu.innerHTML = `Tuit ehdokasta ${kohdePilkottu[0]} äänestyksessä ${aanestys}!`;
+        inforuutu.innerHTML = `Tuit ehdokasta <b>${kohdePilkottu[0]}</b> äänestyksessä <b>${aanestys}</b>!`;
     } else {
         inforuutu.innerHTML = `Höpsö, käytit jo äänesi täällä ehdokkaalle ${localStorage.getItem(`${kirjautunut}¤${aanestys}`)}.`;
     }
@@ -108,7 +108,7 @@ function kirjauduSisaan(){
         document.getElementById("salasana").value = "";
         document.getElementById("aanestajanEtusivu").style.display = "block";
         document.getElementById("etusivu").style.display = "none";
-        inforuutu.innerHTML = `Moi ${kirjautunut}! Olet rooliltasi Äänestäjä.`;
+        inforuutu.innerHTML = `Moi <b>${kirjautunut}</b>! Olet rooliltasi <b>Äänestäjä</b>.`;
         haeAanestykset();
     } else {
         kirjautunut = nimi;
