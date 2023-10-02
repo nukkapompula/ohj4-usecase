@@ -210,10 +210,10 @@ function vahvistaAanestys(){
         inforuutu.innerHTML = "Olet jo luonut samannimisen äänestyksen.";
         document.getElementById("uusiAanestysNimi").value = "";
     } else if(ehdokas1.length == 0 || ehdokas1.length > 20 || ehdokas1.includes(";")){
-        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä tai ylitä 20 merkkiä.";
+        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä tai ylitä 20 merkkiä. Ehdokkaiden täytyy myös olla erinimiset.";
         document.getElementById("uusiEhdokas1").value = "";
-    } else if(ehdokas2.length == 0 || ehdokas2.length > 20 || ehdokas2.includes(";")){
-        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä tai ylitä 20 merkkiä.";
+    } else if(ehdokas2.length == 0 || ehdokas2.length > 20 || ehdokas2.includes(";") || ehdokas1 == ehdokas2){
+        inforuutu.innerHTML = "Nimeä ehdokkaat, mutta älä käytä puolipistettä tai ylitä 20 merkkiä. Ehdokkaiden täytyy myös olla erinimiset.";
         document.getElementById("uusiEhdokas2").value = "";
     } else {
         localStorage.setItem(kirjautunut + ";" + aihe, ehdokas1 + ";" + "0" + ";" + ehdokas2 + ";" + "0");
@@ -246,10 +246,11 @@ function haeAanestykset(){
                 let nimiPilkottu = nimi.split(";");
                 let tilanne = localStorage.getItem(localStorage.key(n));
                 let tilannePilkottu = tilanne.split(";")
-                let aanestys = document.createElement("p");
+                let aanestys = document.createElement("button");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | ${tilannePilkottu[0]} (ääniä: ${tilannePilkottu[1]}) ↔ ${tilannePilkottu[2]} (ääniä: ${tilannePilkottu[3]})`);
                 aanestys.appendChild(aanestysRivi);
                 aanestys.title = "";
+                aanestys.className = "mx-5 my-3 p-2 bg-warning rounded";
                 // tieto äänestäjistä lisätään titleen
                 for(i=0; i<localStorage.length; i++){
                     if(localStorage.key(i).includes("¤") && localStorage.key(i).includes(nimiPilkottu[1])){
@@ -267,10 +268,11 @@ function haeAanestykset(){
             && localStorage.key(n).includes("¤") == false && localStorage.key(n).includes(";") == true){
                 let nimi = localStorage.key(n);
                 let nimiPilkottu = nimi.split(";");
-                let aanestys = document.createElement("p");
+                let aanestys = document.createElement("button");
                 let aanestysRivi = document.createTextNode(`${nimiPilkottu[1]} | Avaaja: ${nimiPilkottu[0]}`);
                 aanestys.appendChild(aanestysRivi);
-                aanestys.title = "";
+                aanestys.title = "Tämä on uusi sinulle.";
+                aanestys.className = "mx-5 my-3 p-2 bg-warning rounded";
                 // tieto äänen käyttämisestä titleen
                 for(j=0; j<localStorage.length; j++){
                     if(localStorage.key(j).includes("¤") && localStorage.key(j).includes(kirjautunut) && localStorage.key(j).includes(nimiPilkottu[1])){
