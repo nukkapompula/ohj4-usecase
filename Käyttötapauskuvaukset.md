@@ -1,8 +1,8 @@
-# Äänestyssovelluksen käyttötapauskuvaukset
+# Mylwintäänestyksen käyttötapauskuvaukset
 Alla luetellut toiminnot kuvaavat sovelluksen erilaisia käyttötapauksia pääosin kronologisessa järjestyksessä.
 
 ## Luo profiili
-Äänestyssovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellaisen luomisprosessi laukaistaan tällä painikkeella. Käyttäjä valitsee ensin roolikseen joko "Ylläpitäjän" tai "Äänestäjän". Sitten hän kirjoittaa haluamansa käyttäjänimen sekä salasanan. Käyttäjälle annetaan virheilmoitus, mikäli annetut tiedot eivät täytä seuraavia ehtoja:
+Sovellusta ei pääse hyödyntämään ilman käyttäjäprofiilia, joten sellaisen luomisprosessi laukaistaan tällä painikkeella. Käyttäjä valitsee ensin roolikseen joko "Ylläpitäjän" tai "Äänestäjän". Sitten hän kirjoittaa haluamansa käyttäjänimen sekä salasanan. Käyttäjälle annetaan virheilmoitus, mikäli annetut tiedot eivät täytä seuraavia ehtoja:
 
 - käyttäjänimi on vapaa
 - käyttäjänimi ei sisällä välilyöntejä, puolipisteitä tai merkkejä & * ¤
