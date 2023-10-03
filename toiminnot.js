@@ -2,6 +2,14 @@ var kirjautunut = null;
 var inforuutu = document.getElementById("info");
 var avaaja = null;
 
+localStorage.setItem("a", "a");
+localStorage.setItem("a;&", "yllapitaja");
+localStorage.setItem("a;*", "a");
+
+localStorage.setItem("b", "b");
+localStorage.setItem("b;&", "aanestaja");
+localStorage.setItem("b;*", "b");
+
 /*
 Käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa ja "¤" käytettyä äänestysoikeutta.
 Tiedot tallennetaan localStorageen muotoon...
@@ -83,7 +91,7 @@ document.getElementById("ehdokas2").addEventListener("mousedown", function(event
 })
 
 function kirjauduSisaan(){
-    inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
+    inforuutu.innerHTML = "<i>Keskustelun polarisoija numero yxi</i>";
     let nimi = document.getElementById("kayttajaNimi").value;
     let sana = document.getElementById("salasana").value;
     let tallennettuNimi = localStorage.getItem(nimi);
@@ -116,21 +124,21 @@ function kirjauduSisaan(){
 function luoKayttaja(){
     document.getElementById("kayttajanLuominen").style.display = "block";
     document.getElementById("etusivu").style.display = "none";
-    inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
+    inforuutu.innerHTML = "<i>Keskustelun polarisoija numero yxi</i>";
 }
 
 function vahvistaKayttaja(){
     let rooli = document.getElementById("rooli").value;
     let nimi = document.getElementById("uusiKayttajaNimi").value;
     let sana = document.getElementById("uusiSalasana").value;
-    if(nimi.length == 0 || nimi.length > 20 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*") || nimi.includes("¤")){
-        inforuutu.innerHTML = "Syötä ruutuun haluamasi käyttäjänimi. Älä käytä välilyöntiä, puolipistettä, &-, ¤- tai *-merkkejä. Nimen maksimipituus on 20 merkkiä.";
+    if(nimi.length < 3 || nimi.length > 20 || nimi.includes(" ") || nimi.includes(";") || nimi.includes("&") || nimi.includes("*") || nimi.includes("¤")){
+        inforuutu.innerHTML = " Nimen minimipituus on 3 ja maksimipituus 20 merkkiä. Älä käytä välilyöntiä, puolipistettä, &-, ¤- tai *-merkkejä.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(localStorage.getItem(nimi) == nimi){
         inforuutu.innerHTML = "Käyttäjänimi ei ole vapaa."
         document.getElementById("uusiKayttajaNimi").value = "";
-    } else if(sana.length < 5 || sana.includes(";")){
-        inforuutu.innerHTML = "Salasanassa tulee olla vähintään 5 merkkiä eikä se saa sisältää puolipisteitä."
+    } else if(sana.length < 3 || sana.includes(";")){
+        inforuutu.innerHTML = "Salasanassa tulee olla vähintään 3 merkkiä eikä se saa sisältää puolipisteitä.";
         document.getElementById("uusiSalasana").value = "";
     } else {
         localStorage.setItem(nimi, nimi);
@@ -145,7 +153,7 @@ function vahvistaKayttaja(){
 }
 
 function peruutaAlkuun(){
-    inforuutu.innerHTML = "Keskustelun polarisoija numero yxi";
+    inforuutu.innerHTML = "<i>Keskustelun polarisoija numero yxi</i>";
     document.getElementById("etusivu").style.display = "block";
     document.getElementById("kayttajanLuominen").style.display = "none";
     document.getElementById("uusiKayttajaNimi").value = "";

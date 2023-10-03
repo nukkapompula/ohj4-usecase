@@ -10,12 +10,12 @@
 
     <header class="container p-3">
         <h1>Mylwintäänestys</h1>
-        <p id="info" class="m-3 text-muted">Keskustelun polarisoija numero yxi</p>
+        <p id="info" class="m-3 text-muted"><i>Keskustelun polarisoija numero yxi</i></p>
     </header>
 
     <section id="etusivu" class="container p-3">
-        <p>Käyttäjänimi: <input type="text" id="kayttajaNimi" class="m-1 rounded"></p>
-        <p>Salasana: <input type="password" id="salasana" class="m-1 rounded"></p>
+        <p>Käyttäjänimi: <input type="text" size="20" maxlength="20" id="kayttajaNimi" class="m-1 rounded"></p>
+        <p>Salasana: <input type="password" size="10" maxlength="10" id="salasana" class="m-1 rounded"></p>
         <button onclick="kirjauduSisaan()" class="p-2 mb-3 bg-warning rounded">Kirjaudu sisään</button>
         <p class="pt-5">Ei tiliä? Tee sellainen itsellesi!</p>
         <button onclick="luoKayttaja()" class="p-2 bg-warning rounded">Luo uusi käyttäjä</button>
@@ -30,8 +30,8 @@
             <option value="yllapitaja">Ylläpitäjä</option>
             <option value="aanestaja">Äänestäjä</option>
         </select>
-        <p>Käyttäjänimesi: <input type="text" id="uusiKayttajaNimi" class="m-1 rounded"></p>
-        <p>Salasanasi: <input type="password" id="uusiSalasana" class="m-1 rounded"></p>
+        <p>Käyttäjänimesi: <input type="text" size="20" maxlength="20" id="uusiKayttajaNimi" class="m-1 rounded"></p>
+        <p>Salasanasi: <input type="password" size="10" maxlength="10" id="uusiSalasana" class="m-1 rounded"></p>
         <button onclick="vahvistaKayttaja()" class="mx-1 p-2 bg-warning rounded">Vahvista</button>
         <button onclick="peruutaAlkuun()" class="mx-1 p-2 bg-success rounded">Peruuta</button>
     </section>
@@ -65,7 +65,7 @@
             Täällä voit avata joko-tai-tyyppisiä äänestyksiä muille. Jos olet luonut äänestyksiä, näet 
             niiden nimet sekä tämänhetkiset äänestystilanteet alla. Pitämällä osoitinta äänestyksen 
             kohdalla saat näkyviin kunkin äänestäjän kannan aiheeseen. Pystyt poistamaan äänestyksen 
-            sitä klikkaamalla.
+            klikkaamalla sitä.
         </p>
         <div id="yllapitajanAanestykset" class="p-3"></div>
         <button onclick="luoAanestys()" class="mx-1 p-2 bg-warning rounded">Luo uusi äänestys</button>
@@ -74,11 +74,11 @@
 
     <section id="aanestyksenLuominen" style="display: none;" class="container p-3">
         <p>
-            Lisää tarvittavat tiedot ruutuihin. Äänestäjät näkevät luomuksesi, kun se on avattu!
+            Lisää tarvittavat tiedot ruutuihin. Äänestäjät näkevät luomuksesi, kun se on vahvistettu!
         </p>
-        <p>Nimeä äänestyksesi: <input type="text" id="uusiAanestysNimi" class="m-1 rounded"></p>
-        <p>Ehdokkaan 1 nimi: <input type="text" id="uusiEhdokas1" class="m-1 rounded"></p>
-        <p>Ehdokkaan 2 nimi: <input type="text" id="uusiEhdokas2" class="m-1 rounded"></p>
+        <p>Nimeä äänestyksesi: <input type="text" size="30" maxlength="30" id="uusiAanestysNimi" class="m-1 rounded"></p>
+        <p>Ehdokkaan 1 nimi: <input type="text" size="20" maxlength="20" id="uusiEhdokas1" class="m-1 rounded"></p>
+        <p>Ehdokkaan 2 nimi: <input type="text" size="20" maxlength="20" id="uusiEhdokas2" class="m-1 rounded"></p>
         <button onclick="vahvistaAanestys()" class="mx-1 p-2 bg-warning rounded">Vahvista</button>
         <button onclick="peruutaEtusivulle()" class="mx-1 p-2 bg-success rounded">Peruuta</button>
     </section>

@@ -6,8 +6,8 @@ Sovellusta ei pääse hyödyntämään ilman käyttäjätiliä, joten sellaisen 
 
 - käyttäjänimi on vapaa
 - käyttäjänimi ei sisällä välilyöntejä, puolipisteitä tai merkkejä & * ¤
-- nimi ei ole tyhjä tai ylitä 20 merkkiä
-- salasanan pituus on vähintään 5 merkkiä eikä sisällä puolipisteitä.
+- nimen pituus ei alita 3 merkkiä tai ylitä 20 merkkiä
+- salasanan pituus on vähintään 3 merkkiä eikä sisällä puolipisteitä.
 
 Kun edellä mainitut seikat ovat kunnossa, luodaan tietojen mukainen käyttäjätili.
 
