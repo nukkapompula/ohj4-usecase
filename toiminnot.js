@@ -1,14 +1,6 @@
 var kirjautunut = null;
-var inforuutu = document.getElementById("info");
 var avaaja = null;
-
-localStorage.setItem("a", "a");
-localStorage.setItem("a;&", "yllapitaja");
-localStorage.setItem("a;*", "a");
-
-localStorage.setItem("b", "b");
-localStorage.setItem("b;&", "aanestaja");
-localStorage.setItem("b;*", "b");
+var inforuutu = document.getElementById("info");
 
 /*
 Käyttäjätiedoissa "&" merkitsee roolia, "*" salasanaa ja "¤" käytettyä äänestysoikeutta.
@@ -135,10 +127,10 @@ function vahvistaKayttaja(){
         inforuutu.innerHTML = " Nimen minimipituus on 3 ja maksimipituus 20 merkkiä. Älä käytä välilyöntiä, puolipistettä, &-, ¤- tai *-merkkejä.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(localStorage.getItem(nimi) == nimi){
-        inforuutu.innerHTML = "Käyttäjänimi ei ole vapaa."
+        inforuutu.innerHTML = "Käyttäjänimi ei ole vapaa.";
         document.getElementById("uusiKayttajaNimi").value = "";
     } else if(sana.length < 3 || sana.includes(";")){
-        inforuutu.innerHTML = "Salasanassa tulee olla vähintään 3 merkkiä eikä se saa sisältää puolipisteitä.";
+        inforuutu.innerHTML = "Salasanassa tulee olla vähintään 3 merkkiä eikä se saa sisältää puolipisteitä. Sen maksimipituus on 10 merkkiä.";
         document.getElementById("uusiSalasana").value = "";
     } else {
         localStorage.setItem(nimi, nimi);
